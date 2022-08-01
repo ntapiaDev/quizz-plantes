@@ -27,6 +27,8 @@ class QuizzController extends Controller
             exit;
         }
 
+        var_dump($_POST);
+
         $questions = $_POST["questions"];
         $answers = $_POST["answers"];
         $options = $_POST["options"];
@@ -34,7 +36,7 @@ class QuizzController extends Controller
         $score = 0;
 
         foreach ($answers as $key => $answer) {
-            $score = $answer == $proposals[$key] ? $score + 1 : $score;
+            $answer == $proposals[$key] ? $score++ : "";
         }
 
         $this->twig->display('quizz/results.html.twig', [

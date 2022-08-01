@@ -46,46 +46,43 @@ const updateQuizz = (e) => {
         f.action = 'quizz/results';
         f.method = 'POST';
 
-        let a = 1
-        questions.forEach(question => {
+        questions.forEach((question, index1) => {
             //Question
             let i1 = document.createElement('input');
             i1.type = 'hidden';
-            i1.name = `questions[${a}]`
+            i1.name = `questions[${index1}]`
             i1.value = question[0];
             f.appendChild(i1);
 
             //Réponse
             let i2 = document.createElement('input');
             i2.type = 'hidden';
-            i2.name = `answers[${a}]`
+            i2.name = `answers[${index1}]`
             i2.value = question[1];
             f.appendChild(i2);
 
             // Liste des choix proposés
             let options = question[2];
-            let b = 1;
-            options.forEach(option => {
+            options.forEach((option, index2) => {
                 let i = document.createElement('input');
                 i.type = 'hidden';
-                i.name = `options[${a}][${b}]`;
+                i.name = `options[${index1}][${index2}]`;
                 i.value = option;
                 f.appendChild(i);
-                b++;
+                index2++;
             })
 
-            a++;
+            index1++;
         })
 
-        let c = 1;
-        answers.forEach(answer => {
+        answers.forEach((answer, index) => {
             let i = document.createElement('input');
             i.type = 'hidden';
-            i.name = `proposals[${c}]`
+            i.name = `proposals[${index}]`
             i.value = answer;
             f.appendChild(i);
 
-            c++;
+            index++;
         })
 
         document.body.appendChild(f);

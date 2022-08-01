@@ -8,7 +8,7 @@
     <section>
         <h1>Résultats : {{ score }} / {{ questions|length }}</h1>
         {% for index, question in questions %}
-        <p>{{ index }} - {{ question }}</p>
+        <p>{{ index + 1 }} - {{ question }}</p>
         <p>Réponse : {{ answers[index] }}</p>
         <p>Votre réponse : <span class={{ answers[index] == proposals[index] ? "success" : "error"}}>{{ proposals[index] }}</span></p>
         {% endfor %}
