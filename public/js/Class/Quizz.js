@@ -6,7 +6,7 @@ class Quizz {
 
     makeQuestions() {
 
-        let newDatas = this.datas;
+        let newDatas = [...this.datas];
 
         let questions = [];
         for (let i = 0; i < this.length; i++) {

@@ -33,7 +33,7 @@ const updateQuizz = (e) => {
 
     //update
     if (counter < (length)) {
-        document.querySelector(".counter").textContent = 5 - counter;
+        document.querySelector(".counter").textContent = length - counter;
         document.querySelector(".question").textContent = questions[counter][0];
         document.querySelector("button:nth-child(1)").textContent = questions[counter][2][0];
         document.querySelector("button:nth-child(2)").textContent = questions[counter][2][1];
