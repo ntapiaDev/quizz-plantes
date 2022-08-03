@@ -12,11 +12,11 @@ class Db extends PDO
     private const DBHOST = 'localhost';
     private const DBUSER = 'root';
     private const DBPASS = '';
-    private const DBNAME = 'destinations';
+    private const DBNAME = 'quizz';
 
     private function __construct()
     {
-        $_dsn = 'mysql:dbname=' . self::DBNAME . ';host=' . self::DBHOST;
+        $_dsn = 'mysql:dbname=' . self::DBNAME . ';host=' . self::DBHOST . ';charset=utf8';
 
         try {
             parent::__construct($_dsn, self::DBUSER, self::DBPASS);

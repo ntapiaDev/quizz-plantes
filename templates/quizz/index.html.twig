@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Quizz sur les plantes{% endblock %}
+
+{% block javascript %}
+<script type="module" src="/js/app.js" defer></script>
+{% endblock %}
+
+{% block body %}
+<main>
+    <section>
+        <h1>Quizz :</h1>
+        <p><span class="counter"></span> questions restantes.</p>
+        <p class="question"></p>
+        <div class="btns">
+        </div>
+    </section>
+</main>
+{% endblock %}

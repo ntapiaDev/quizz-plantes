@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Résultats du quizz{% endblock %}
+
+{% block body %}
+<main>
+    <section>
+        <h1>Résultats : {{ score }} / {{ quizz|length }}</h1>
+        {% for index, question in quizz %}
+            <p>{{ index }} - {{ question["question"] }}</p>
+            <p>Réponse : {{ question["answer"] }}</p>
+            <p>Votre réponse : <span class={{ question["answer"] == question["proposal"] ? "success" : "error" }}>{{ question["proposal"] }}</span></p>
+        {% endfor %}
+        <a href="/quizz">Recommencer</a>
+    </section>
+</main>
+{% endblock %}
