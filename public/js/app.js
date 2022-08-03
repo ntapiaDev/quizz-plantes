@@ -30,7 +30,7 @@ const getAllDatas = () => {
                 }
 
                 //update
-                let image = document.querySelector(".image");
+                let image = document.querySelector(".solo-image");
                 if (counter < (length)) {
                     document.querySelector(".counter").textContent = length - counter;
                     document.querySelector(".question").textContent = questions[counter][0][0];
