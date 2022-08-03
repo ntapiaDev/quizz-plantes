@@ -5,3 +5,26 @@
 .error {
     color: red;
 }
+
+.image {
+    width: 100px;
+    height: 100px;
+}
+
+.image-success {
+    border: 3px double green;
+}
+
+.image-error {
+    border: 3px double red;
+}
+
+.anwser-card {
+    border: 1px solid black;
+    margin: 1em;
+    padding: 1em;
+}
+
+.hidden {
+    display: none;
+}

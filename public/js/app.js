@@ -1,7 +1,8 @@
 import Quizz from "./Class/Quizz";
 
 //Taille du quizz
-let length = 30;
+let length = 5;
+let choices = 4;
 
 let counter = 0;
 
@@ -14,10 +15,10 @@ const getAllDatas = () => {
         .then(response => response.json())
         .then(response => {
             datas = response;
-            console.log(datas);
+            // console.log(datas);
 
             //Lancement du quizz
-            let quizz = new Quizz(length, datas);
+            let quizz = new Quizz(length, choices, datas);
             let questions = quizz.makeQuestions();
             console.log(questions);
 
@@ -25,20 +26,39 @@ const getAllDatas = () => {
             const updateQuizz = (e) => {
 
                 if (e != undefined) {
-                    proposals.push(e.target.textContent);
+                    proposals.push(e.target.textContent != "" ? e.target.textContent : e.target.src.split("/")[4]);
                 }
 
                 //update
+                let image = document.querySelector(".image");
                 if (counter < (length)) {
                     document.querySelector(".counter").textContent = length - counter;
-                    document.querySelector(".question").textContent = questions[counter][0];
+                    document.querySelector(".question").textContent = questions[counter][0][0];
+
+                    //reset here
                     document.querySelector('.btns').textContent = "";
-                    questions[counter][2].forEach((option) => {
-                        let btn = document.createElement("button");
-                        btn.textContent = option
-                        btn.addEventListener("click", updateQuizz)
-                        document.querySelector('.btns').appendChild(btn);
-                    })
+                    image.classList.add("hidden");
+                    image.src = "";
+
+                    if (questions[counter][0][1] != "") {
+                        image.classList.remove("hidden");
+                        image.src = `img/${questions[counter][0][1]}`;
+                        questions[counter][2].forEach((option) => {
+                            let btn = document.createElement("button");
+                            btn.textContent = option
+                            btn.addEventListener("click", updateQuizz)
+                            document.querySelector('.btns').appendChild(btn);
+                        })
+                    } else {
+                        questions[counter][2].forEach((option) => {
+                            let img = document.createElement("img");
+                            img.classList.add("image");
+                            img.src = `img/${option}`;
+                            img.addEventListener("click", updateQuizz)
+                            document.querySelector('.btns').appendChild(img);
+                        })
+                    }
+
                     counter++;
 
                 } else if (counter == length) {
@@ -52,8 +72,15 @@ const getAllDatas = () => {
                         let iq = document.createElement('input');
                         iq.type = 'hidden';
                         iq.name = `quizz[${index + 1}][question]`
-                        iq.value = question[0];
+                        iq.value = question[0][0];
                         f.appendChild(iq);
+
+                        //Images
+                        let ii = document.createElement('input');
+                        ii.type = 'hidden';
+                        ii.name = `quizz[${index + 1}][image]`
+                        ii.value = question[0][1];
+                        f.appendChild(ii);
 
                         //Réponse
                         let ia = document.createElement('input');

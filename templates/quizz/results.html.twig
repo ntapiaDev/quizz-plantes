@@ -6,12 +6,22 @@
 <main>
     <section>
         <h1>Résultats : {{ score }} / {{ quizz|length }}</h1>
-        {% for index, question in quizz %}
-            <p>{{ index }} - {{ question["question"] }}</p>
-            <p>Réponse : {{ question["answer"] }}</p>
-            <p>Votre réponse : <span class={{ question["answer"] == question["proposal"] ? "success" : "error" }}>{{ question["proposal"] }}</span></p>
-        {% endfor %}
         <a href="/quizz">Recommencer</a>
+        {% for index, question in quizz %}
+        <div class="anwser-card">
+            <p>{{ index }} - {{ question["question"] }}</p>
+            {% if question["image"] != "" %}
+            <img src={{ question["image"] }} class="image">
+            <p>Réponse : {{ question["answer"] }}</p>
+            <p>Votre réponse : <span class={{ question["answer"]==question["proposal"] ? "success" : "error" }}>{{
+                    question["proposal"] }}</span></p>
+            {% else %}
+            <p>Réponse : <img src={{ question["answer"] }} class="image"></p>
+            <p>Votre réponse : <img src={{ question["proposal"] }} class={{ question["answer"]==question["proposal"]
+                    ? "'image image-success'" : "'image image-error'" }}></p>
+            {% endif %}
+        </div>
+        {% endfor %}
     </section>
 </main>
 {% endblock %}
