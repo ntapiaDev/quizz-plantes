@@ -42,7 +42,7 @@ const getAllDatas = () => {
 
                     if (questions[counter][0][1] != "") {
                         image.classList.remove("hidden");
-                        image.src = `img/${questions[counter][0][1]}`;
+                        image.src = `/img/${questions[counter][0][1]}`;
                         questions[counter][2].forEach((option) => {
                             let btn = document.createElement("button");
                             btn.textContent = option
@@ -53,7 +53,7 @@ const getAllDatas = () => {
                         questions[counter][2].forEach((option) => {
                             let img = document.createElement("img");
                             img.classList.add("image");
-                            img.src = `img/${option}`;
+                            img.src = `/img/${option}`;
                             img.addEventListener("click", updateQuizz)
                             document.querySelector('.btns').appendChild(img);
                         })
