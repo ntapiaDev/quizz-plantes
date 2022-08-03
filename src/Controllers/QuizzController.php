@@ -27,23 +27,15 @@ class QuizzController extends Controller
             exit;
         }
 
-        var_dump($_POST);
-
-        $questions = $_POST["questions"];
-        $answers = $_POST["answers"];
-        $options = $_POST["options"];
-        $proposals = $_POST["proposals"];
+        $quizz = $_POST["quizz"];
         $score = 0;
 
-        foreach ($answers as $key => $answer) {
-            $answer == $proposals[$key] ? $score++ : "";
+        foreach ($quizz as $question) {
+            $question["answer"] == $question["proposal"] ? $score++ : "";
         }
 
         $this->twig->display('quizz/results.html.twig', [
-            "questions" => $questions,
-            "answers" => $answers,
-            "options" => $options,
-            "proposals" => $proposals,
+            "quizz" => $quizz,
             "score" => $score
         ]);
     }

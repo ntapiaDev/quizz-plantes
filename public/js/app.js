@@ -22,13 +22,13 @@ console.log(questions);
 
 let counter = 0;
 
-let answers = [];
+let proposals = [];
 
 //Affichage du quizz
 const updateQuizz = (e) => {
 
     if (e != undefined) {
-        answers.push(e.target.textContent);
+        proposals.push(e.target.textContent);
     }
 
     //update
@@ -46,44 +46,78 @@ const updateQuizz = (e) => {
         f.action = 'quizz/results';
         f.method = 'POST';
 
-        questions.forEach((question, index1) => {
+        questions.forEach((question, index) => {
             //Question
-            let i1 = document.createElement('input');
-            i1.type = 'hidden';
-            i1.name = `questions[${index1}]`
-            i1.value = question[0];
-            f.appendChild(i1);
+            let iq = document.createElement('input');
+            iq.type = 'hidden';
+            iq.name = `quizz[${index + 1}][question]`
+            iq.value = question[0];
+            f.appendChild(iq);
 
             //Réponse
-            let i2 = document.createElement('input');
-            i2.type = 'hidden';
-            i2.name = `answers[${index1}]`
-            i2.value = question[1];
-            f.appendChild(i2);
+            let ia = document.createElement('input');
+            ia.type = 'hidden';
+            ia.name = `quizz[${index + 1}][answer]`
+            ia.value = question[1];
+            f.appendChild(ia);
 
-            // Liste des choix proposés
-            let options = question[2];
-            options.forEach((option, index2) => {
-                let i = document.createElement('input');
-                i.type = 'hidden';
-                i.name = `options[${index1}][${index2}]`;
-                i.value = option;
-                f.appendChild(i);
+            //Options
+            question[2].forEach((option, index2) => {
+                let io = document.createElement('input');
+                io.type = 'hidden';
+                io.name = `quizz[${index + 1}][options][${index2 + 1}]`;
+                io.value = option;
+                f.appendChild(io);
                 index2++;
             })
 
-            index1++;
+            //Proposition du joueur
+            let ip = document.createElement('input');
+            ip.type = 'hidden';
+            ip.name = `quizz[${index + 1}][proposal]`
+            ip.value = proposals[index];
+            f.appendChild(ip);
         })
 
-        answers.forEach((answer, index) => {
-            let i = document.createElement('input');
-            i.type = 'hidden';
-            i.name = `proposals[${index}]`
-            i.value = answer;
-            f.appendChild(i);
+        // questions.forEach((question, index1) => {
+        //     //Question
+        //     let i1 = document.createElement('input');
+        //     i1.type = 'hidden';
+        //     i1.name = `questions[${index1}]`
+        //     i1.value = question[0];
+        //     f.appendChild(i1);
 
-            index++;
-        })
+        //     //Réponse
+        //     let i2 = document.createElement('input');
+        //     i2.type = 'hidden';
+        //     i2.name = `answers[${index1}]`
+        //     i2.value = question[1];
+        //     f.appendChild(i2);
+
+        //     // Liste des choix proposés
+        //     let options = question[2];
+        //     options.forEach((option, index2) => {
+        //         let i = document.createElement('input');
+        //         i.type = 'hidden';
+        //         i.name = `options[${index1}][${index2}]`;
+        //         i.value = option;
+        //         f.appendChild(i);
+        //         index2++;
+        //     })
+
+        //     index1++;
+        // })
+
+        // //Proposition du joueur
+        // answers.forEach((answer, index) => {
+        //     let i = document.createElement('input');
+        //     i.type = 'hidden';
+        //     i.name = `proposals[${index}]`
+        //     i.value = answer;
+        //     f.appendChild(i);
+
+        //     index++;
+        // })
 
         document.body.appendChild(f);
         f.submit();
