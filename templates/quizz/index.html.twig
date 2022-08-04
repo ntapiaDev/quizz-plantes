@@ -2,37 +2,10 @@
 
 {% block title %}Quizz sur les plantes{% endblock %}
 
-{% block stylesheets %}
-<link rel="stylesheet" href="/css/normalQuizz.css">
-{% endblock %}
-
-{% block javascript %}
-<script type="module" src="/js/app.js" defer></script>
-{% endblock %}
-
 {% block body %}
 <main>
     <section>
-        <h1>Quizz général :</h1>
-        <div class="line"></div>   
-
-        <div class="image-container">            
-            <div class="colored-bg"></div>
-            <img src="" class="solo-image">
-        </div>
-
-        <p class="question"></p>
-
-        <div class="btns"></div>
-
-        <div class="progress">
-            <div class="progress-bar">
-                <div class="progress-content"></div>
-            </div>
-            <div class="counter-container">
-                <span class="counter"></span>/<span class="total"></span>
-            </div>
-        </div>
+        <p>Veuillez choisir un <a href="/quizz/normal">quizz normal</a> ou un <a href="/quizz/hiver">quizz hiver</a>.</p>
     </section>
 </main>
 {% endblock %}

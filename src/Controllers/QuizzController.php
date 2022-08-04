@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\PlantesModel;
+use App\Models\QuizzModel;
 
 class QuizzController extends Controller
 {
@@ -41,6 +42,26 @@ class QuizzController extends Controller
     }
 
     /**
+     * Affiche la page du quizz
+     *
+     * @return void
+     */
+    public function normal()
+    {
+        $this->twig->display('quizz/quizz.html.twig');
+    }
+
+    /**
+     * Affiche la page du quizz
+     *
+     * @return void
+     */
+    public function hiver()
+    {
+        $this->twig->display('quizz/quizz.html.twig');
+    }
+
+    /**
      * Affiche la page des résultats
      *
      * @return void
@@ -53,11 +74,21 @@ class QuizzController extends Controller
         }
 
         $quizz = $_POST["quizz"];
+        $infos = $_POST["infos"];
         $score = 0;
 
         foreach ($quizz as $question) {
             $question["answer"] == $question["proposal"] ? $score++ : "";
         }
+
+        $quizzModel = new QuizzModel;
+        $quizzModel->setUsername('Nicolas')
+            ->setType($infos['type'])
+            ->setLength($infos['length'])
+            ->setChoices($infos['choices'])
+            ->setDuration($infos['duration'])
+            ->setSuccess($score);
+        $quizzModel->create();
 
         $this->twig->display('quizz/results.html.twig', [
             "quizz" => $quizz,

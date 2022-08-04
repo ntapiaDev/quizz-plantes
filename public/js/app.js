@@ -8,10 +8,20 @@ let counter = 0;
 
 let proposals = [];
 
+//Quizz normal ou hiver :
+let type = window.location.href.split('/')[4];
+document.querySelector('h1 span').textContent = type;
+let uri = type == "normal" ? "/quizz/getAllPlantes" : "/quizz/getWinterPlantes";
+
+if(type == "hiver") {
+    document.querySelector('.line').classList.add('hiver');
+    document.querySelector('.colored-bg').classList.add('hiver');
+}
+
 //Récupération des données et initialisation du quizz
 let datas = [];
 const getAllDatas = () => {
-    fetch(`/quizz/getAllPlantes`)
+    fetch(uri)
         .then(response => response.json())
         .then(response => {
             datas = response;
@@ -24,6 +34,7 @@ const getAllDatas = () => {
 
             //Affichage du quizz
             document.querySelector('.total').textContent = length;
+            let startTimer = new Date();
             const updateQuizz = (e) => {
 
                 if (e != undefined) {
@@ -49,6 +60,7 @@ const getAllDatas = () => {
                         questions[counter][2].forEach((option) => {
                             let btn = document.createElement("button");
                             btn.textContent = option
+                            type == 'hiver' ? btn.classList.add('hiver') : "";
                             btn.addEventListener("click", updateQuizz)
                             document.querySelector('.btns').appendChild(btn);
                         })
@@ -75,7 +87,7 @@ const getAllDatas = () => {
                 } else if (counter == length) {
 
                     let f = document.createElement('form');
-                    f.action = 'quizz/results';
+                    f.action = '/quizz/results';
                     f.method = 'POST';
 
                     questions.forEach((question, index) => {
@@ -116,6 +128,34 @@ const getAllDatas = () => {
                         ip.name = `quizz[${index + 1}][proposal]`
                         ip.value = proposals[index];
                         f.appendChild(ip);
+
+                        //Type de quizz
+                        let it = document.createElement('input');
+                        it.type = 'hidden';
+                        it.name = `infos[type]`
+                        it.value = type;
+                        f.appendChild(it);
+
+                        //Longueur du quizz
+                        let il = document.createElement('input');
+                        il.type = 'hidden';
+                        il.name = `infos[length]`
+                        il.value = length;
+                        f.appendChild(il);
+
+                        //Nombre de propositions
+                        let inb = document.createElement('input');
+                        inb.type = 'hidden';
+                        inb.name = `infos[choices]`
+                        inb.value = choices;
+                        f.appendChild(inb);
+
+                        //Durée du quizz
+                        let id = document.createElement('input');
+                        id.type = 'hidden';
+                        id.name = `infos[duration]`
+                        id.value = Math.round((new Date() - startTimer) / 1000);
+                        f.appendChild(id);
                     })
 
                     document.body.appendChild(f);
