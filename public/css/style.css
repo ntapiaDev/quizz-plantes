@@ -14,7 +14,9 @@
     --color-black: #000000;
 }
 
-*, *::after, *::before {
+*,
+*::after,
+*::before {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -31,9 +33,9 @@ body {
 /*  */
 .body_background_log {
     color: var(--color-black);
-    background-image: url("../images/background_sign_log_in_desktop.jpg");
+    background-image: url("../img/background_sign_log_in_desktop.jpg");
     background-size: cover;
-    background-position:center;
+    background-position: center;
     text-align: center;
 }
 
@@ -122,8 +124,9 @@ a:hover {
     font-size: 1.25em;
     font-weight: 700;
 }
+
 header {
-    background: #0A4C58 !important;
+    background: #0A4C58;
 
 }
 
@@ -197,6 +200,7 @@ header {
     font-size: 3em;
     text-align: left;
 }
+
 /*  */
 
 /* QUIZ */
@@ -206,7 +210,7 @@ header {
 }
 
 /* MAIN PAGE : BTN*/
-.mainPage_btn_img{
+.mainPage_btn_img {
     display: inline-block;
     position: absolute;
     z-index: 1;
@@ -215,7 +219,7 @@ header {
     left: 5em;
 }
 
-.mainPage_btn_txt{
+.mainPage_btn_txt {
     line-height: 1.6em;
     position: absolute;
     width: 11.5em;
@@ -224,33 +228,35 @@ header {
 }
 
 /* BTN1 */
-#mainPage_btn_img1{
+#mainPage_btn_img1 {
     bottom: 15em;
 }
 
-#mainPage_btn_txt1{
+#mainPage_btn_txt1 {
     bottom: 11.5em;
     color: var(--color-white);
 }
+
 /* BTN2 */
-#mainPage_btn_img2{
+#mainPage_btn_img2 {
     bottom: -40.5em;
 }
 
-#mainPage_btn_txt2{
+#mainPage_btn_txt2 {
     bottom: -20.5em;
     color: var(--color-white);
 }
 
 /* BTN3 */
-#mainPage_btn_img3{
+#mainPage_btn_img3 {
     bottom: -100.5em;
 }
 
-#mainPage_btn_txt3{
+#mainPage_btn_txt3 {
     bottom: -54.5em;
     color: var(--color-white);
 }
+
 /*  */
 
 /* GESTION PARALAX */
@@ -265,15 +271,15 @@ header {
 
 /* IMAGE DU PARALAX */
 #mainPage_div_title_1 {
-    background-image: url(../images/quizhiver1.jpg);
+    background-image: url(../img/quizhiver1.jpg);
 }
 
 #mainPage_div_title_2 {
-    background-image: url(../images/quiznormal.png);
+    background-image: url(../img/quiznormal.png);
 }
 
 #mainPage_div_title_3 {
-    background-image: url(../images/quizchrono.jpg);
+    background-image: url(../img/quizchrono.jpg);
 
 }
 
@@ -281,6 +287,7 @@ header {
     width: 100%;
     margin: auto;
 }
+
 /*  */
 
 
@@ -330,7 +337,7 @@ div {
     /*  */
     .body_background_log {
         height: 45em;
-        background-image: url("../images/background_sign_log_in.jpg");
+        background-image: url("../img/background_sign_log_in.jpg");
         background-size: 160%;
         background-position-y: 80%;
         background-position-x: 20%;
@@ -373,161 +380,167 @@ div {
         padding-block: 0.6em;
         padding-inline: 2.5em;
     }
+
     /*  */
-/*  */
-/* MEDIA QUERRY MOBILE */
-@media only screen and (max-width: 480px) {
+    /*  */
+    /* MEDIA QUERRY MOBILE */
+    @media only screen and (max-width: 480px) {
 
-    /* LOG IN AND SIGN IN */
+        /* LOG IN AND SIGN IN */
 
-    .login_desktop {
-        display: none;
-    }
+        .login_desktop {
+            display: none;
+        }
 
-    #div_login {
-        width: 85%;
-        height: 30em !important;
-        margin-inline: 8%;
-        margin-top: 7em;
-    }
+        #div_login {
+            width: 85%;
+            height: 30em !important;
+            margin-inline: 8%;
+            margin-top: 7em;
+        }
 
-    #div_signup {
-        width: 85%;
-        height: 42em !important;
-        margin-inline: 8%;
-        margin-top: 3em;
-        background-color: var(--color-white-tr);
-    }
+        #div_signup {
+            width: 85%;
+            height: 42em !important;
+            margin-inline: 8%;
+            margin-top: 3em;
+            background-color: var(--color-white-tr);
+        }
 
-    /* FORM */
-    #form_login,
-    #form_signup {
-        padding-top: 30% !important;
-        padding-inline: 0%;
-    }
+        /* FORM */
+        #form_login,
+        #form_signup {
+            padding-top: 30% !important;
+            padding-inline: 0%;
+        }
 
-    input {
-        width: 100% !important;
-        margin-bottom: 1.5em !important;
-    }
+        input {
+            width: 100% !important;
+            margin-bottom: 1.5em !important;
+        }
 
-    .btn_form {
-        margin-top: 1em;
-        font-size: 1.2em;
-        padding-block: 0.6em;
-        padding-inline: 2.5em;
-    }
+        .btn_form {
+            margin-top: 1em;
+            font-size: 1.2em;
+            padding-block: 0.6em;
+            padding-inline: 2.5em;
+        }
+
         /*  */
 
-    /* MAIN PAGE */
-    /*  */
+        /* MAIN PAGE */
+        /*  */
 
-    /* HEADER*/
-#mainPage_header {
-    height: 15em;
-    width: 95%;
+        /* HEADER*/
+        #mainPage_header {
+            height: 15em;
+            width: 95%;
+        }
+
+        .dot {
+            height: 7em;
+            width: 7em;
+            top: 5%;
+            right: 8%;
+        }
+
+        #user {
+            width: 5.5em;
+            top: 7%;
+            right: 11%;
+        }
+
+        /* GREETINGS TXT */
+        #mainPage_h1 {
+            margin-top: 5em;
+            font-size: 2em;
+        }
+
+        /*  */
+
+        /* QUIZ */
+
+        div {
+            display: block;
+        }
+
+        #mainPage_section {
+            margin-inline: 0.1em;
+            margin-bottom: 5em;
+        }
+
+        /* MAIN PAGE : BTN*/
+        .mainPage_btn_img {
+            height: 12em;
+            width: 8.5em;
+            left: 1em;
+        }
+
+        .mainPage_btn_txt {
+            line-height: 1.2em;
+            width: 10em;
+            left: 0em;
+            font-size: 1em;
+        }
+
+        /* BTN1 */
+        #mainPage_btn_img1 {
+            bottom: 10.5em;
+        }
+
+        #mainPage_btn_txt1 {
+            bottom: 15em;
+        }
+
+        /* BTN2 */
+        #mainPage_btn_img2 {
+            bottom: -28.5em;
+        }
+
+        #mainPage_btn_txt2 {
+            bottom: -24.5em;
+        }
+
+        /* BTN3 */
+        #mainPage_btn_img3 {
+            bottom: -73em;
+        }
+
+        #mainPage_btn_txt3 {
+            bottom: -68.8em;
+        }
+
+        /*  */
+
+        /* GESTION PARALAX */
+        #mainPage_div_title_1,
+        #mainPage_div_title_2,
+        #mainPage_div_title_3 {
+            width: 100%;
+            padding: 8em 0;
+        }
+
+        .title-parallax {
+            font-size: 2em;
+        }
+
+        .mainPage_paragraph {
+            font-size: 1em;
+            margin-left: 2em;
+            border-left: var(--color-black) solid 0.15em;
+
+        }
+
+        .mainPage_paragraph_p {
+            margin-left: 1em;
+            margin-right: 30%;
+            z-index: 1;
+        }
+
+        .mainPage_paragraph_p:first-child:first-letter {
+            font-size: 3em;
+            line-height: 1em;
+        }
+    }
+
 }
-
-    .dot {
-        height: 7em;
-        width: 7em;
-        top: 5%;
-        right: 8%;
-    }
-    
-    #user {
-        width: 5.5em;
-        top: 7%;
-        right: 11%;
-    }
-    
-    /* GREETINGS TXT */
-    #mainPage_h1 {
-        margin-top: 5em;
-        font-size: 2em;
-    }
-    /*  */
-    
-    /* QUIZ */
-
-    div{
-        display: block;
-    }
-
-    #mainPage_section {
-        margin-inline: 0.1em;
-        margin-bottom: 5em;
-    }
-
-    /* MAIN PAGE : BTN*/
-    .mainPage_btn_img{
-        height: 12em;
-        width: 8.5em;
-        left: 1em;
-    }
-    
-    .mainPage_btn_txt{
-        line-height: 1.2em;
-        width: 10em;
-        left: 0em;
-        font-size: 1em;
-    }
-    
-    /* BTN1 */
-    #mainPage_btn_img1{
-        bottom: 10.5em;
-    }
-    
-    #mainPage_btn_txt1{
-        bottom: 15em;
-    }
-    /* BTN2 */
-    #mainPage_btn_img2{
-        bottom: -28.5em;
-    }
-    
-    #mainPage_btn_txt2{
-        bottom: -24.5em;
-    }
-    
-    /* BTN3 */
-    #mainPage_btn_img3{
-        bottom: -73em;
-    }
-    
-    #mainPage_btn_txt3{
-        bottom: -68.8em;
-    }
-    /*  */
-    
-    /* GESTION PARALAX */
-    #mainPage_div_title_1,
-    #mainPage_div_title_2,
-    #mainPage_div_title_3 {
-        width: 100%;
-        padding: 8em 0;
-    }
-
-    .title-parallax {
-        font-size: 2em;
-    }
-    
-    .mainPage_paragraph {
-        font-size: 1em;
-        margin-left: 2em;
-        border-left: var(--color-black) solid 0.15em;
-    
-    }
-
-    .mainPage_paragraph_p {
-        margin-left: 1em;
-        margin-right: 30%;
-        z-index: 1;
-    }
-    
-    .mainPage_paragraph_p:first-child:first-letter {
-        font-size:3em;
-        line-height: 1em;
-    }
-}
-    
