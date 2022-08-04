@@ -10,5 +10,11 @@
 {% endblock %}
 
 {% block body %}
+    <main class="body_background_log">
+    <div class="container" id="div_signup">
 {{ registerForm|raw }}
+</div>
+<h1 class="h1_log">Vous avez déjà un compte?</h1>
+<h2 class="h2_log"><a href="users/login">Cliquez ici</a></h2>
+</main>
 {% endblock %}
