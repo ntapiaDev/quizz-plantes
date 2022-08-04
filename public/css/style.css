@@ -142,3 +142,47 @@ header {
 .que {
     background: #499CAB;
 }
+
+/*  */
+/* MEDIA QUERRY MOBILE */
+@media only screen and (max-width: 480px) {
+
+    /* LOG IN AND SIGN IN */
+
+    .login_desktop {
+        display: none;
+    }
+
+    #div_login {
+        width: 85%;
+        height: 30em !important;
+        margin-inline: 8%;
+        margin-top: 7em;
+    }
+
+    #div_signup {
+        width: 85%;
+        height: 42em !important;
+        margin-inline: 8%;
+        margin-top: 3em;
+        background-color: var(--color-white-tr);
+    }
+
+    /* FORM */
+    #form_login,
+    #form_signup {
+        padding-top: 30% !important;
+        padding-inline: 0%;
+    }
+
+    input {
+        width: 100% !important;
+        margin-bottom: 1.5em !important;
+    }
+
+    .btn_form {
+        margin-top: 1em;
+        font-size: 1.2em;
+        padding-block: 0.6em;
+        padding-inline: 2.5em;
+    }
