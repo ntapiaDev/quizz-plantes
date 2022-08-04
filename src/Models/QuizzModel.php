@@ -19,24 +19,15 @@ Class QuizzModel extends Model
     }
 
     /**
-     * Récupère le nom d'un user à partir de son id
+     * Récupère les stats d'un joueur
      *
      * @param integer $id
      * @return mixed
      */
-    public function findOneById(int $id)
+    public function findAllByUsername(string $username)
     {
-        return $this->request("SELECT * FROM $this->table WHERE id = ?", [$id])->fetch();
-    }
-
-    /**
-     * Récupère les plantes pour le quizz hiver
-     * @return [Plantes]
-     */
-    public function findWinterPlants()
-    {
-        return $this->request("SELECT * FROM $this->table WHERE floraison RLIKE 'décembre|janvier|février|mars'")->fetchAll();
-    }
+        return $this->request("SELECT * FROM $this->table WHERE username = ?", [$username])->fetchAll();
+    }    
 
     /**
      * Get the value of id

@@ -11,4 +11,8 @@
 
 {% block body %}
     <h1>User page</h1>
-{% endblock %}
+
+    {% for quizz in stats %}
+        <p>Type : {{ quizz['type'] }}</p>
+    {% endfor %}
+    {% endblock %}

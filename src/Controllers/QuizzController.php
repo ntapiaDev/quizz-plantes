@@ -96,8 +96,10 @@ class QuizzController extends Controller
             $question["answer"] == $question["proposal"] ? $score++ : "";
         }
 
+        $username = $_SESSION['user']['username'];
+
         $quizzModel = new QuizzModel;
-        $quizzModel->setUsername('Nicolas')
+        $quizzModel->setUsername($username)
             ->setType($infos['type'])
             ->setLength($infos['length'])
             ->setChoices($infos['choices'])
