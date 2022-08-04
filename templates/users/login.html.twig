@@ -13,12 +13,13 @@
 {% if message != '' %}
             <aside id="messages">{{ message }}</aside>
         {% endif %}
-        
+            <main class="body_background_log">
     <div class="container" id="div_login">
     {{ loginForm|raw }}
 </div>
 
 <h1 class="h1_log">Vous n'avez pas de compte?</h1>
 <h2 class="h2_log"><a href="users/register">Cliquez ici</a></h2>
+</main>
 
 {% endblock %}
