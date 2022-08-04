@@ -99,3 +99,7 @@ button {
     align-items: center;
     color: white;
 }
+
+.hidden {
+    display: none;
+}
