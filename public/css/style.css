@@ -3,6 +3,15 @@
 :root {
     --bg-accueil: linear-gradient(180deg, #0A4C58 39.58%, #FFFFFF 100%);
     --backdrop: rgba(255, 255, 255, 0.8);
+    --color-white: white;
+    --transparency-white: 4px 4px 4px white;
+    --color-white-tr: rgba(248, 248, 248, 0.4);
+    --color-font-grey: #635959;
+    --color-background-blue: #019CA1;
+    --boxshadow-input: 0 0 0 0.2rem rgba(201, 129, 84, 0.447);
+    --color-background-orange: #C76810;
+    --boxshadow-btn: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    --color-black: #000000;
 }
 
 *, *::after, *::before {
@@ -12,10 +21,99 @@
 }
 
 body {
-    font-family: "Inter" !important;
+    font-family: "Inter";
     /* background: var(--bg-accueil) !important; */
 }
 
+/*  */
+/* PAGE SIGN IN & LOG IN */
+/*  */
+
+#div_login,
+#div_signup {
+    width: 40em;
+    height: 47em !important;
+    margin-top: 5em;
+    margin-inline: 33%;
+    background-color: var(--color-white-tr);
+}
+
+/* form */
+#form_login,
+#form_signup {
+    padding-top: 30% !important;
+    padding-inline: 20%;
+}
+
+#form_signup {
+    padding-top: 17% !important;
+}
+
+input {
+    width: 100% !important;
+    margin-bottom: 1.5em !important;
+    font-size: 1.2em !important;
+    padding-block: 0.7em !important;
+    border-radius: 15px !important;
+    color: var(--color-font-grey) !important;
+    border: var(--color-font-grey) 1.5px solid !important;
+}
+
+
+/* input padding */
+input::placeholder,
+input:focus,
+input {
+    text-indent: 3em;
+}
+
+input:focus {
+    border-color: var(--color-background-orange) !important;
+    box-shadow: var(--boxshadow-input) !important;
+}
+
+input:focus::-webkit-input-placeholder {
+    opacity: 0;
+}
+
+/* button */
+.btn_form {
+    margin-top: 1em;
+    font-size: 1.2em;
+    color: var(--color-white);
+    background-color: var(--color-background-blue);
+    box-shadow: var(--boxshadow-btn);
+    padding-block: 0.6em;
+    padding-inline: 5.5em;
+    border-radius: 20px;
+    border: var(--color-black) 1.5px solid !;
+}
+
+.btn_form:active {
+    background-color: var(--color-white);
+    color: var(--color-background-blue);
+}
+
+/* switch between sign in and log in*/
+.h1_log {
+    margin-top: 1.2em;
+    font-size: 1.25em;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-black);
+}
+
+a:hover {
+    color: var(--color-background-orange);
+}
+
+.h2_log {
+    font-size: 1.25em;
+    font-weight: 700;
+}
 header {
     background: #0A4C58 !important;
 
