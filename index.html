@@ -1,8 +1,20 @@
-{% extends "base.html.twig" %}
+<!DOCTYPE html>
+<html lang="fr">
 
-{% block title %}Quizz sur les plantes{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <title>Accueil</title>
+</head>
 
-{% block body %}
+<body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-dark">
             <div class="container">
@@ -13,8 +25,8 @@
                 <div class="collapse navbar-collapse" id="n_bar">
                     <ul class="navbar-nav">
                         <li class="nav-item active"><a class="nav-link" href="#">Accueil</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/main/login">Se connecter</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/main/register">S'enregistrer</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Se connecter</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">S'enregistrer</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Langues</a></li>
                     </ul>
                 </div>
@@ -39,4 +51,7 @@
         <p class="nic p-1 w-25">Nicolas</p>
         <p class="que p-1 w-25">Quentin</p>
     </footer>
-{% endblock %}
+
+</body>
+
+</html>

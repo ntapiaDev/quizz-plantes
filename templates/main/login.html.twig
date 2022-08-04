@@ -1,0 +1,10 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Page de Connexion{% endblock %}
+
+{% block body %}
+{{ loginForm|raw }}
+{% if message != '' %}
+            <aside id="messages">{{ message }}</aside>
+        {% endif %}
+{% endblock %}
