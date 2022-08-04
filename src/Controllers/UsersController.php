@@ -107,7 +107,7 @@ class UsersController extends Controller
             ->ajoutLabelFor('firstname', 'Votre prénom :')
             ->ajoutInput('text', 'firstname', ['id' => 'firstname', 'class' => '', 'placeholder' => 'Prénom', 'value' => $firstname])
             ->ajoutLabelFor('username', 'Votre pseudo :')
-            ->ajoutInput('text', 'username', ['id' => 'username', 'class' => '', 'placeholder' => 'Prénom', 'value' => $username])
+            ->ajoutInput('text', 'username', ['id' => 'username', 'class' => '', 'placeholder' => 'Pseudo', 'value' => $username])
             ->ajoutLabelFor('email', 'Votre email :')
             ->ajoutInput('email', 'email', ['id' => 'email', 'class' => '', 'placeholder' => 'Adresse email', 'value' => $email])
             ->ajoutLabelFor('password', 'Votre mot de passe :')

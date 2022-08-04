@@ -13,10 +13,9 @@
 
 body {
     font-family: "Inter" !important;
-    background: var(--bg-accueil) !important;
+    /* background: var(--bg-accueil) !important; */
 }
 
-/* Header */
 header {
     background: #0A4C58 !important;
 
