@@ -1,0 +1,32 @@
+p:nth-child(1) {
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
+}
+
+.image {
+    width: 100%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.image-success {
+    border: 3px double green;
+}
+
+.image-error {
+    border: 3px double red;
+}
+
+.anwser-card {
+    border: 1px solid black;
+    margin: 1em;
+    padding: 1em;
+}

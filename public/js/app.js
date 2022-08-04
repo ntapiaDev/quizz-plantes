@@ -23,6 +23,7 @@ const getAllDatas = () => {
             console.log(questions);
 
             //Affichage du quizz
+            document.querySelector('.total').textContent = length;
             const updateQuizz = (e) => {
 
                 if (e != undefined) {
@@ -31,17 +32,19 @@ const getAllDatas = () => {
 
                 //update
                 let image = document.querySelector(".solo-image");
+                let imageContainer = document.querySelector(".image-container");
                 if (counter < (length)) {
-                    document.querySelector(".counter").textContent = length - counter;
+                    document.querySelector(".counter").textContent = counter + 1;
+                    document.querySelector(".progress-content").style.width = ((counter + 1) / length) * 100 + "%";
                     document.querySelector(".question").textContent = questions[counter][0][0];
 
                     //reset here
                     document.querySelector('.btns').textContent = "";
-                    image.classList.add("hidden");
+                    imageContainer.classList.add("hidden");
                     image.src = "";
 
                     if (questions[counter][0][1] != "") {
-                        image.classList.remove("hidden");
+                        imageContainer.classList.remove("hidden");
                         image.src = `/img/${questions[counter][0][1]}`;
                         questions[counter][2].forEach((option) => {
                             let btn = document.createElement("button");
@@ -50,12 +53,20 @@ const getAllDatas = () => {
                             document.querySelector('.btns').appendChild(btn);
                         })
                     } else {
-                        questions[counter][2].forEach((option) => {
+                        questions[counter][2].forEach((option, index) => {
                             let img = document.createElement("img");
                             img.classList.add("image");
                             img.src = `/img/${option}`;
                             img.addEventListener("click", updateQuizz)
                             document.querySelector('.btns').appendChild(img);
+
+                            let numberContainer = document.createElement('div');
+                            numberContainer.classList.add('number-container');
+                            let number = document.createElement('div');
+                            number.textContent = index + 1;
+                            number.classList.add('number');
+                            numberContainer.appendChild(number);
+                            document.querySelector('.btns').appendChild(numberContainer);
                         })
                     }
 

@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
 
+:root {
+    --bg-accueil: linear-gradient(180deg, #0A4C58 39.58%, #FFFFFF 100%);
+    --backdrop: rgba(255, 255, 255, 0.8);
+}
+
 *, *::after, *::before {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-:root {
-    --bg-accueil: linear-gradient(180deg, #0A4C58 39.58%, #FFFFFF 100%);
-    --backdrop: rgba(255, 255, 255, 0.8);
 }
 
 body {
@@ -44,4 +44,3 @@ header {
 
 .que {
     background: #499CAB;
-}
