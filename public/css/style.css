@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
 
 *, *::after, *::before {
     margin: 0;
@@ -6,90 +6,42 @@
     box-sizing: border-box;
 }
 
+:root {
+    --bg-accueil: linear-gradient(180deg, #0A4C58 39.58%, #FFFFFF 100%);
+    --backdrop: rgba(255, 255, 255, 0.8);
+}
+
 body {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Inter" !important;
+    background: var(--bg-accueil) !important;
 }
 
-/* Page quizz général */
+/* Header */
+header {
+    background: #0A4C58 !important;
 
-h1 {
-    margin: 1em;
 }
 
-.line {
-    width: 75%;
-    height: .5em;
-    background-color: rgb(46, 79, 114);
-    border-radius: 0 .25em .25em 0;
+/* Main */
+
+.texte {
+    background: var(--backdrop) !important;
 }
 
-.image-container {
-    width: 100%;
-    height: 33vh;
-    margin-top: 1em;
-    display: flex;
-    justify-content: end;
-    position: relative;
+/* Footer */
+.rea {
+    background: #0F2228;
+    color: #FFFFFF;
 }
 
-.green-bg {
-    width: 60%;
-    height: 100%;
-    margin-right: 10%;
-    background-color: rgb(180, 213, 129);
+.ame {
+    background: #A1CED6;
 }
 
-.solo-image {
-    height: 80%;
-    position: absolute;
-    top: 10%;
-    left: 20%;
+.nic {
+    background: #78B4BF;
 }
 
-.question {
-    margin: 1em;
-    padding: 1em;
-    border: 1px solid black;
-    text-align: center;
-}
-
-.btns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-button {
-    padding: 1em;
-    margin: 1em;
-    background-color: rgb(46, 79, 114);
-    color: white;
-    border-radius: 1em;
-}
-
-/* ----- */
-
-.success {
-    color: green;
-}
-
-.error {
-    color: red;
-}
-
-.image-success {
-    border: 3px double green;
-}
-
-.image-error {
-    border: 3px double red;
-}
-
-.anwser-card {
-    border: 1px solid black;
-    margin: 1em;
-    padding: 1em;
-}
-
-.hidden {
-    display: none;
+.que {
+    background: #499CAB;
 }
