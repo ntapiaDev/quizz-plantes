@@ -8,6 +8,9 @@ h1 {
     background-color: rgb(243, 66, 53);
     border-radius: 0 .25em .25em 0;
 }
+.line.hiver {
+    background-color: rgb(46, 79, 114);
+}
 
 .image-container {
     width: 100%;
@@ -23,6 +26,9 @@ h1 {
     height: 100%;
     margin-right: 10%;
     background-color: rgb(255, 229, 136);
+}
+.colored-bg.hiver {
+    background-color: rgb(219, 227, 255);
 }
 
 .solo-image {
@@ -50,6 +56,9 @@ button {
     background-color: rgb(243, 66, 53);
     color: white;
     border-radius: 1em;
+}
+button.hiver {
+    background-color: rgb(46, 79, 114);
 }
 
 .btns img, .btns .number-container {
