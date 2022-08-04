@@ -38,6 +38,11 @@ class QuizzController extends Controller
      */
     public function index()
     {
+        if(!isset($_SESSION['user'])) {
+            header('Location: /users/login');
+            exit;
+        }
+
         $this->twig->display('quizz/index.html.twig');
     }
 
@@ -48,6 +53,11 @@ class QuizzController extends Controller
      */
     public function normal()
     {
+        if(!isset($_SESSION['user'])) {
+            header('Location: /users/login');
+            exit;
+        }
+
         $this->twig->display('quizz/quizz.html.twig');
     }
 
@@ -58,6 +68,11 @@ class QuizzController extends Controller
      */
     public function hiver()
     {
+        if(!isset($_SESSION['user'])) {
+            header('Location: /users/login');
+            exit;
+        }
+        
         $this->twig->display('quizz/quizz.html.twig');
     }
 
