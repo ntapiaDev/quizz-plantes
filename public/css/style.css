@@ -151,6 +151,229 @@ header {
     background: #499CAB;
 }
 
+
+/*  */
+/* MAIN PAGE */
+/*  */
+
+/* HEADER*/
+#mainPage_header {
+    background-color: var(--color-white);
+    height: 20em;
+    margin: 3em;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+/* PROFIL PICTURE */
+.dot {
+    height: 10em;
+    width: 10em;
+    border-radius: 50%;
+    background-color: var(--color-white);
+    border: var(--color-black) 2px solid;
+    display: inline-block;
+    position: absolute;
+    top: 3.3em;
+    right: 6.3em;
+    z-index: 1;
+    display: block;
+}
+
+#user {
+    width: 7.5em;
+    position: absolute;
+    top: 4.9em;
+    right: 7.5em;
+    z-index: 1;
+    display: block;
+}
+
+/* GREETINGS TXT */
+#mainPage_h1 {
+    margin-top: 5em;
+    font-weight: 500;
+    font-size: 3em;
+    text-align: left;
+}
+/*  */
+
+/* QUIZ */
+#mainPage_section {
+    margin-inline: 3em;
+    margin-bottom: 5em;
+}
+
+/* MAIN PAGE : BTN*/
+.mainPage_btn_img{
+    display: inline-block;
+    position: absolute;
+    z-index: 1;
+    height: 16em;
+    width: 15em;
+    left: 5em;
+}
+
+.mainPage_btn_txt{
+    line-height: 1.6em;
+    position: absolute;
+    width: 11.5em;
+    left: 1.3em;
+    z-index: 1;
+}
+
+/* BTN1 */
+#mainPage_btn_img1{
+    bottom: 15em;
+}
+
+#mainPage_btn_txt1{
+    bottom: 11.5em;
+    color: var(--color-white);
+}
+/* BTN2 */
+#mainPage_btn_img2{
+    bottom: -40.5em;
+}
+
+#mainPage_btn_txt2{
+    bottom: -20.5em;
+    color: var(--color-white);
+}
+
+/* BTN3 */
+#mainPage_btn_img3{
+    bottom: -100.5em;
+}
+
+#mainPage_btn_txt3{
+    bottom: -54.5em;
+    color: var(--color-white);
+}
+/*  */
+
+/* GESTION PARALAX */
+#mainPage_div_title_1,
+#mainPage_div_title_2,
+#mainPage_div_title_3 {
+    width: 100%;
+    background-attachment: fixed;
+    background-size: cover;
+    padding: 14em;
+}
+
+/* IMAGE DU PARALAX */
+#mainPage_div_title_1 {
+    background-image: url(../images/quizhiver1.jpg);
+}
+
+#mainPage_div_title_2 {
+    background-image: url(../images/quiznormal.png);
+}
+
+#mainPage_div_title_3 {
+    background-image: url(../images/quizchrono.jpg);
+
+}
+
+.parallax {
+    width: 100%;
+    margin: auto;
+}
+/*  */
+
+
+.title-parallax {
+    text-align: center;
+    font-size: 4em;
+    text-shadow: 0 0 10px var(--color-black), 0 0 10px var(--color-background-blue);
+    color: var(--color-white);
+    font-weight: bold;
+}
+
+.mainPage_paragraph {
+    font-size: 1.5em;
+    text-align: left;
+    margin-left: 1em;
+    margin-right: 2em;
+    margin-block: 2em;
+    border-left: var(--color-black) solid 0.2em;
+    background-color: var(--boxshadow-input);
+    position: relative;
+
+}
+
+.mainPage_paragraph_p {
+    margin-left: 1em;
+    margin-right: 65%;
+}
+
+div {
+    overflow: hidden;
+}
+
+.mainPage_paragraph_p:first-child:first-letter {
+    font-size: 4em;
+    line-height: 1em;
+    font-weight: bold;
+    color: var(--color-font-green);
+}
+
+
+/*  */
+/* MEDIA QUERRY MOBILE */
+@media only screen and (max-width: 480px) {
+
+    /*  */
+    /* LOG IN AND SIGN IN */
+    /*  */
+    .body_background_log {
+        height: 45em;
+        background-image: url("../images/background_sign_log_in.jpg");
+        background-size: 160%;
+        background-position-y: 80%;
+        background-position-x: 20%;
+    }
+
+    .login_desktop {
+        display: none;
+    }
+
+    #div_login {
+        width: 85%;
+        height: 30em !important;
+        margin-inline: 8%;
+        margin-top: 7em;
+    }
+
+    #div_signup {
+        width: 85%;
+        height: 42em !important;
+        margin-inline: 8%;
+        margin-top: 3em;
+        background-color: var(--color-white-tr);
+    }
+
+    /* FORM */
+    #form_login,
+    #form_signup {
+        padding-top: 30% !important;
+        padding-inline: 0%;
+    }
+
+    input {
+        width: 100% !important;
+        margin-bottom: 1.5em !important;
+    }
+
+    .btn_form {
+        margin-top: 1em;
+        font-size: 1.2em;
+        padding-block: 0.6em;
+        padding-inline: 2.5em;
+    }
+    /*  */
 /*  */
 /* MEDIA QUERRY MOBILE */
 @media only screen and (max-width: 480px) {
@@ -194,3 +417,117 @@ header {
         padding-block: 0.6em;
         padding-inline: 2.5em;
     }
+        /*  */
+
+    /* MAIN PAGE */
+    /*  */
+
+    /* HEADER*/
+#mainPage_header {
+    height: 15em;
+    width: 95%;
+}
+
+    .dot {
+        height: 7em;
+        width: 7em;
+        top: 5%;
+        right: 8%;
+    }
+    
+    #user {
+        width: 5.5em;
+        top: 7%;
+        right: 11%;
+    }
+    
+    /* GREETINGS TXT */
+    #mainPage_h1 {
+        margin-top: 5em;
+        font-size: 2em;
+    }
+    /*  */
+    
+    /* QUIZ */
+
+    div{
+        display: block;
+    }
+
+    #mainPage_section {
+        margin-inline: 0.1em;
+        margin-bottom: 5em;
+    }
+
+    /* MAIN PAGE : BTN*/
+    .mainPage_btn_img{
+        height: 12em;
+        width: 8.5em;
+        left: 1em;
+    }
+    
+    .mainPage_btn_txt{
+        line-height: 1.2em;
+        width: 10em;
+        left: 0em;
+        font-size: 1em;
+    }
+    
+    /* BTN1 */
+    #mainPage_btn_img1{
+        bottom: 10.5em;
+    }
+    
+    #mainPage_btn_txt1{
+        bottom: 15em;
+    }
+    /* BTN2 */
+    #mainPage_btn_img2{
+        bottom: -28.5em;
+    }
+    
+    #mainPage_btn_txt2{
+        bottom: -24.5em;
+    }
+    
+    /* BTN3 */
+    #mainPage_btn_img3{
+        bottom: -73em;
+    }
+    
+    #mainPage_btn_txt3{
+        bottom: -68.8em;
+    }
+    /*  */
+    
+    /* GESTION PARALAX */
+    #mainPage_div_title_1,
+    #mainPage_div_title_2,
+    #mainPage_div_title_3 {
+        width: 100%;
+        padding: 8em 0;
+    }
+
+    .title-parallax {
+        font-size: 2em;
+    }
+    
+    .mainPage_paragraph {
+        font-size: 1em;
+        margin-left: 2em;
+        border-left: var(--color-black) solid 0.15em;
+    
+    }
+
+    .mainPage_paragraph_p {
+        margin-left: 1em;
+        margin-right: 30%;
+        z-index: 1;
+    }
+    
+    .mainPage_paragraph_p:first-child:first-letter {
+        font-size:3em;
+        line-height: 1em;
+    }
+}
+    
