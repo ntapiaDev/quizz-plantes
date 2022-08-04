@@ -103,16 +103,16 @@ class UsersController extends Controller
 
         $form->debutForm('post', '#', ['enctype' => 'multipart/form-data'])
             ->ajoutLabelFor('lastname', 'Votre nom :')
-            ->ajoutInput('text', 'lastname', ['id' => 'lastname', 'class' => '', 'placeholder' => 'Nom', 'value' => $lastname])
+            ->ajoutInput('text', 'lastname', ['id' => 'lastname', 'class' => 'form-control', 'placeholder' => 'Nom', 'value' => $lastname])
             ->ajoutLabelFor('firstname', 'Votre prénom :')
-            ->ajoutInput('text', 'firstname', ['id' => 'firstname', 'class' => '', 'placeholder' => 'Prénom', 'value' => $firstname])
+            ->ajoutInput('text', 'firstname', ['id' => 'firstname', 'class' => 'form-control', 'placeholder' => 'Prénom', 'value' => $firstname])
             ->ajoutLabelFor('username', 'Votre pseudo :')
-            ->ajoutInput('text', 'username', ['id' => 'username', 'class' => '', 'placeholder' => 'Pseudo', 'value' => $username])
+            ->ajoutInput('text', 'username', ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Pseudo', 'value' => $username])
             ->ajoutLabelFor('email', 'Votre email :')
-            ->ajoutInput('email', 'email', ['id' => 'email', 'class' => '', 'placeholder' => 'Adresse email', 'value' => $email])
+            ->ajoutInput('email', 'email', ['id' => 'email', 'class' => 'form-control', 'placeholder' => 'Adresse email', 'value' => $email])
             ->ajoutLabelFor('password', 'Votre mot de passe :')
-            ->ajoutInput('password', 'password', ['id' => 'password', 'class' => '', 'placeholder' => 'Mot de passe'])
-            ->ajoutBouton('M\'enregistrer', ['class' => ''])
+            ->ajoutInput('password', 'password', ['id' => 'password', 'class' => 'form-control', 'placeholder' => 'Mot de passe'])
+            ->ajoutBouton('M\'enregistrer', ['class' => 'btn_form'])
             ->finForm();
 
             $this->twig->display('users/register.html.twig', [
