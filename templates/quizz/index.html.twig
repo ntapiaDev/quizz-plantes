@@ -1,6 +1,8 @@
 {% extends "base.html.twig" %}
 
-{% block javascript %}{% endblock %}
+{% block javascript %}
+<script type="module" src="/js/index.js" defer></script>
+{% endblock %}
 {% block title %}Quizz sur les plantes{% endblock %}
 
 {% block body %}
@@ -10,7 +12,7 @@
     <header id="mainPage_header">
         <div class="profil_pic">
             <span class="dot"></span>
-            <img src="assets/icones/user.svg" alt="user" id="user">
+            <img src="/img/user.svg" alt="user" id="user">
         </div>
         <h1 id="mainPage_h1">Bonjour, </h1>
     </header>
@@ -20,8 +22,8 @@
         <p>Veuillez choisir un <a href="/quizz/normal">quizz normal</a> ou un <a href="/quizz/hiver">quizz hiver</a>.</p>
         
                 <div class="mainPage_btn container">
-            <img class="mainPage_btn_img" id="mainPage_btn_img1" src="assets/images/btn1.svg" alt="btn_quiz"
-                id="mainPage_btn1" href="/quizz/hiver">
+            <a href="/quizz/hiver"><img class="mainPage_btn_img" id="mainPage_btn_img1" src="/img/btn1.svg" alt="btn_quiz"
+                id="mainPage_btn1"></a>
             <h3 class="mainPage_btn_txt" id="mainPage_btn_txt1">FAIRE LE<br>QUIZ HIVER</h3>
         </div>
         <div id="mainPage_div_title_1" class="parallax">
@@ -42,8 +44,8 @@
         
         <!-- title quiz 2 -->
         <div class="mainPage_btn container">
-            <img class="mainPage_btn_img" id="mainPage_btn_img2" src="assets/images/btn2.svg" alt="btn_quiz"
-                id="mainPage_btn1" href="/quizz/normal">
+            <a href="/quizz/normal"><img class="mainPage_btn_img" id="mainPage_btn_img2" src="/img/btn2.svg" alt="btn_quiz"
+                id="mainPage_btn1"></a>
             <h3 class="mainPage_btn_txt" id="mainPage_btn_txt2">FAIRE LE<br>QUIZ</h3>
         </div>
         <div id="mainPage_div_title_2" class="parallax">
@@ -63,8 +65,8 @@
         
         <!-- title quiz 3 -->
         <div class="mainPage_btn">
-            <img class="mainPage_btn_img" id="mainPage_btn_img3" src="assets/images/btn1.svg" alt="btn_quiz"
-                id="mainPage_btn1" href="#">
+            <a href="#"><img class="mainPage_btn_img" id="mainPage_btn_img3" src="/img/btn1.svg" alt="btn_quiz"
+                id="mainPage_btn1"></a>
             <h3 class="mainPage_btn_txt" id="mainPage_btn_txt3">FAIRE LE<br>QUIZ</h3>
         </div>
         <div id="mainPage_div_title_3" class="parallax">
