@@ -4,8 +4,83 @@
 
 {% block body %}
 <main>
+
+    <!-- Header = profil user tag and greetings -->
+    <header id="mainPage_header">
+        <div class="profil_pic">
+            <span class="dot"></span>
+            <img src="assets/icones/user.svg" alt="user" id="user">
+        </div>
+        <h1 id="mainPage_h1">Bonjour, </h1>
+    </header>
+    
+        <!-- title quiz 1 -->
     <section>
         <p>Veuillez choisir un <a href="/quizz/normal">quizz normal</a> ou un <a href="/quizz/hiver">quizz hiver</a>.</p>
+        
+                <div class="mainPage_btn container">
+            <img class="mainPage_btn_img" id="mainPage_btn_img1" src="assets/images/btn1.svg" alt="btn_quiz"
+                id="mainPage_btn1" href="/quizz/hiver">
+            <h3 class="mainPage_btn_txt" id="mainPage_btn_txt1">FAIRE LE<br>QUIZ HIVER</h3>
+        </div>
+        <div id="mainPage_div_title_1" class="parallax">
+            <div>
+                <h2 id="mainPage_h2_1" class="title-parallax">QUIZ HIVER</h1>
+            </div>
+        </div>
+        
+        <!--paragraph  -->
+        <div container>
+            <div class="mainPage_paragraph">
+                <p class="mainPage_paragraph_p" id="para_1">Certains signaux permettent aux plantes d'entrer
+                    progressivement en période de dormance et de se préparer
+                    en douceur contre l'hiver.
+                    Pourtant l'hiver est la saison de floraison de nombreux végétaux.</p>
+            </div>
+        </div>
+        
+        <!-- title quiz 2 -->
+        <div class="mainPage_btn container">
+            <img class="mainPage_btn_img" id="mainPage_btn_img2" src="assets/images/btn2.svg" alt="btn_quiz"
+                id="mainPage_btn1" href="/quizz/normal">
+            <h3 class="mainPage_btn_txt" id="mainPage_btn_txt2">FAIRE LE<br>QUIZ</h3>
+        </div>
+        <div id="mainPage_div_title_2" class="parallax">
+            <div>
+                <h2 id="mainPage_h2_2" class="title-parallax">QUIZ<br>"AU CALME"</h1>
+            </div>
+        </div>
+        
+                <!--paragraph  -->
+        <div>
+            <div class="mainPage_paragraph">
+                <p class="mainPage_paragraph_p" id="para_2">Des études ont démontré que les patients hospitalisés qui
+                    peuvent regarder des arbres guérissent plus
+                    rapidement et soufrent moins de complications que ceux qui n’ont pas accès à ce type de paysage.</p>
+            </div>
+        </div>
+        
+        <!-- title quiz 3 -->
+        <div class="mainPage_btn">
+            <img class="mainPage_btn_img" id="mainPage_btn_img3" src="assets/images/btn1.svg" alt="btn_quiz"
+                id="mainPage_btn1" href="#">
+            <h3 class="mainPage_btn_txt" id="mainPage_btn_txt3">FAIRE LE<br>QUIZ</h3>
+        </div>
+        <div id="mainPage_div_title_3" class="parallax">
+            <div>
+                <h2 id="mainPage_h2_3" class="title-parallax">QUIZ<br>"TOP CHRONO"</h1>
+            </div>
+        </div>
+
+        <!--paragraph  -->
+        <div>
+            <div class="mainPage_paragraph">
+                <p class="mainPage_paragraph_p" id="para_3">L'arbre est un producteur d'oxygène, un purificateur d'air
+                    et une source de vie. Les arbres séquestrent
+                    le CO2 dans l'atmosphère puis le transforment et le rejettent sous forme d'oxygène. La forêt
+                    amazonienne, permet de stocker à elle seule 50 tonnes de carbone!</p>
+            </div>
+        </div>
     </section>
 </main>
 {% endblock %}
