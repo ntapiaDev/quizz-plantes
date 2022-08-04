@@ -56,11 +56,11 @@ class UsersController extends Controller
         $form = new Form;
 
         $form->debutForm()
-            ->ajoutLabelFor('username', 'Votre pseudo :')
-            ->ajoutInput('text', 'username', ['id' => 'username', 'class' => '', 'placeholder' => 'Pseudo'])
+            ->ajoutLabelFor('input_pseudo', 'Votre pseudo :')
+            ->ajoutInput('text', 'username', ['id' => 'input_pseudo', 'class' => 'form-control', 'placeholder' => 'Pseudo'])
             ->ajoutLabelFor('password', 'Votre mot de passe :')
-            ->ajoutInput('password', 'password', ['id' => 'password', 'class' => '', 'placeholder' => 'Mot de passe'])
-            ->ajoutBouton('Me connecter', ['class' => ''])
+            ->ajoutInput('password', 'password', ['id' => 'password', 'class' => 'form-control', 'placeholder' => 'Mot de passe'])
+            ->ajoutBouton('Me connecter', ['class' => 'btn_form'])
             ->finForm();
     
         $this->twig->display('users/login.html.twig', [
