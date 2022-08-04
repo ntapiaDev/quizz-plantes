@@ -35,7 +35,7 @@ class Quizz {
                 let answers = this.makeAnswers(newDatas[index]['famille'], 'famille');
                 questions.push([[question, image], newDatas[index]['famille'], answers.sort(() => Math.random() - 0.5)]);
             } else if (random < (4/6)) {
-                let question = `Laquelle de ces images correspond au ${newDatas[index]['nom_fr']} ?`;
+                let question = `Laquelle de ces images correspond à ${newDatas[index]['nom_fr']} ?`;
                 let image = "";
                 let answers = this.makeAnswers(newDatas[index]['image'], 'image');
                 questions.push([[question, image], newDatas[index]['image'], answers.sort(() => Math.random() - 0.5)]);
