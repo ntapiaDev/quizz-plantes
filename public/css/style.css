@@ -28,6 +28,13 @@ body {
 /*  */
 /* PAGE SIGN IN & LOG IN */
 /*  */
+.body_background_log {
+    color: var(--color-black);
+    background-image: url("../images/background_sign_log_in_desktop.jpg");
+    background-size: cover;
+    background-position:center;
+    text-align: center;
+}
 
 #div_login,
 #div_signup {
