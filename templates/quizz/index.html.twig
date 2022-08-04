@@ -2,6 +2,10 @@
 
 {% block title %}Quizz sur les plantes{% endblock %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/normalQuizz.css">
+{% endblock %}
+
 {% block javascript %}
 <script type="module" src="/js/app.js" defer></script>
 {% endblock %}
@@ -13,7 +17,7 @@
         <div class="line"></div>   
 
         <div class="image-container">            
-            <div class="green-bg"></div>
+            <div class="colored-bg"></div>
             <img src="" class="solo-image">
         </div>
 
@@ -21,7 +25,14 @@
 
         <div class="btns"></div>
 
-        <p><span class="counter"></span> questions restantes.</p>
+        <div class="progress">
+            <div class="progress-bar">
+                <div class="progress-content"></div>
+            </div>
+            <div class="counter-container">
+                <span class="counter"></span>/<span class="total"></span>
+            </div>
+        </div>
     </section>
 </main>
 {% endblock %}
