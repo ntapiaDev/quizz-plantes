@@ -43,7 +43,11 @@ class QuizzController extends Controller
             exit;
         }
 
-        $this->twig->display('quizz/index.html.twig');
+        $username = $_SESSION['user']['username'];
+
+        $this->twig->display('quizz/index.html.twig', [
+            "username" => $username
+        ]);
     }
 
     /**

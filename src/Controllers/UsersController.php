@@ -21,11 +21,14 @@ class UsersController extends Controller
 
         $username = $_SESSION['user']['username'];
 
+        $userModel = new UsersModel;
         $quizzModel = new QuizzModel;
 
+        $user = $userModel->findOneByUsername($username);
         $stats = $quizzModel->findAllByUsername($username);
 
         $this->twig->display('users/index.html.twig', [
+            "user" => $user,
             "stats" => $stats
         ]);
     }
@@ -128,5 +131,12 @@ class UsersController extends Controller
             'message' => isset($_SESSION['erreur']) ? $_SESSION['erreur'] : ''
         ]);
         unset($_SESSION['erreur']);
+    }
+
+    public function logout() {
+        unset($_SESSION['user']);
+        header('Location: /');
+        // header('Location: '. $_SERVER['HTTP_REFERER']);
+        exit;
     }
 }

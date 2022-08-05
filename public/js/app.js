@@ -1,7 +1,7 @@
 import Quizz from "./Class/Quizz";
 
 //Taille du quizz
-let length = 5;
+let length = 15;
 let choices = 4;
 
 let counter = 0;
