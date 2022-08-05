@@ -1,18 +1,53 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Quizz sur les plantes{% endblock %}
+{% block title %}Quizz sur les plantes
+{% endblock %}
 
 {% block stylesheets %}
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="/css/profil.css" rel="stylesheet">
 {% endblock %}
 {% block javascript %}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
 {% endblock %}
 
 {% block body %}
-    <h1>User page</h1>
 
-    {% for quizz in stats %}
-        <p>Type : {{ quizz['type'] }}</p>
-    {% endfor %}
-    {% endblock %}
+	<body class="log-body-bg min-h-screen bg-no-repeat pt-28 md:pt-16 flex flex-row" style="font-family: 'Inter', sans-serif">
+		<section id="profil_section_profil">
+			<img src="/img/blob_profil.svg" class="absolute right-24 -top-16" alt="">
+			<article class="article_profil mb-10">
+				<table class="text-black text-lg my-3 pb-8 flex flex-col">
+					<tbody class="ml-6 mr-6 mt-40">
+						<tr class="border-b-4">
+							<td class="px-2 py-2 bg-white w-80">Nom :
+							</td>
+							<td id="lastname" class="px-2 py-2 bg-white"></td>
+						</tr>
+						<tr class="border-b-4">
+							<td class="px-2 py-2 bg-white">Prénom :
+							</td>
+							<td id="firstname" class="px-2 py-2 bg-white"></td>
+						</tr>
+						<tr class="border-b-4">
+							<td class="px-2 py-2 bg-white">Pseudo :
+							</td>
+							<td id="pseudo" class="px-2 py-2 bg-white"></td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article class="fipie shadow-lg overflow-hidden">
+				<h3 class="text-white">PROGRES</h3>
+				<canvas class="p-10 text-black" id="chartPie"></canvas>
+			</article>
+			<h2 class="h2_display_desktop text-white">
+				<a href="login.html">PAGE PRINCIPAL</a>
+			</h2>
+		</section>
+
+	</body>
+
+{% endblock %}
