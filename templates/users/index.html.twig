@@ -4,50 +4,78 @@
 {% endblock %}
 
 {% block stylesheets %}
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link href="/css/profil.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+<link href="/css/profil.css" rel="stylesheet">
 {% endblock %}
 {% block javascript %}
-	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
 {% endblock %}
 
 {% block body %}
 
-	<body class="log-body-bg min-h-screen bg-no-repeat pt-28 md:pt-16 flex flex-row" style="font-family: 'Inter', sans-serif">
-		<section id="profil_section_profil">
-			<img src="/img/blob_profil.svg" class="absolute right-24 -top-16" alt="">
-			<article class="article_profil mb-10">
-				<table class="text-black text-lg my-3 pb-8 flex flex-col">
-					<tbody class="ml-6 mr-6 mt-40">
-						<tr class="border-b-4">
-							<td class="px-2 py-2 bg-white w-80">Nom :
-							</td>
-							<td id="lastname" class="px-2 py-2 bg-white"></td>
-						</tr>
-						<tr class="border-b-4">
-							<td class="px-2 py-2 bg-white">Prénom :
-							</td>
-							<td id="firstname" class="px-2 py-2 bg-white"></td>
-						</tr>
-						<tr class="border-b-4">
-							<td class="px-2 py-2 bg-white">Pseudo :
-							</td>
-							<td id="pseudo" class="px-2 py-2 bg-white"></td>
-						</tr>
-					</tbody>
-				</table>
-			</article>
+<body class="log-body-bg min-h-screen bg-no-repeat pt-28 md:pt-16 flex flex-row"
+	style="font-family: 'Inter', sans-serif">
+	<section id="profil_section_profil">
+		<img src="/img/blob_profil.svg" class="absolute right-24 -top-16" alt="">
+		<article class="article_profil mb-10">
+			<table class="text-black text-lg my-3 pb-8 flex flex-col">
+				<tbody class="ml-6 mr-6 mt-40">
+					<tr class="border-b-4">
+						<td class="px-2 py-2 bg-white w-80">Nom :
+						</td>
+						<td id="lastname" class="px-2 py-2 bg-white">{{user["lastname"]}}</td>
+					</tr>
+					<tr class="border-b-4">
+						<td class="px-2 py-2 bg-white">Prénom :
+						</td>
+						<td id="firstname" class="px-2 py-2 bg-white">{{user["firstname"]}}</td>
+					</tr>
+					<tr class="border-b-4">
+						<td class="px-2 py-2 bg-white">Pseudo :
+						</td>
+						<td id="pseudo" class="px-2 py-2 bg-white">{{user["username"]}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
 
-			<article class="fipie shadow-lg overflow-hidden">
-				<h3 class="text-white">PROGRES</h3>
-				<canvas class="p-10 text-black" id="chartPie"></canvas>
-			</article>
-			<h2 class="h2_display_desktop text-white">
-				<a href="login.html">PAGE PRINCIPAL</a>
-			</h2>
-		</section>
+		<article class="fipie shadow-lg overflow-hidden">
+			<h3 class="text-white">PROGRES</h3>
+			{% for quizz in stats %}
+			<p>Bonnes réponses : {{ quizz['success'] }}</p>
+			<p>Mauvaises réponses : {{ quizz['length'] - quizz['success'] }}</p>
 
-	</body>
+			<div class="chart">
+				<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 100 100"
+					style="margin: -120px">
+					<g fill="none" fill-rule="evenodd" stroke-width="20">
+						{% set radius = 10 %}
+						{% set currentcount = quizz['success'] %}
+						{% set totalcount = quizz['length'] %}
+						<circle cx="50" cy="50" r="{{ radius }}" stroke="#2E4F72" />
+						{% set portion = (2 * 3.14159265359 * radius) / totalcount %}
+						{% set offset = (2 * 3.14159265359 * radius) / 4 %}
+						{% if currentcount > 0 %}
+						<circle cx="50" cy="50" r="{{ radius }}" stroke="#020D1E"
+							stroke-dasharray="{{ portion * currentcount }} {{ portion * (totalcount - currentcount) }}"
+							stroke-dashoffset="{{ offset }}" />
+						{% endif %}
+					</g>
+				</svg>
+			</div>
+			<p>Type de quizz : {{ quizz['type'] }}</p>
+				<p>Nombre de questions : {{ quizz['length'] }}</p>
+				<p>Choix par question : {{ quizz['choices'] }}</p>
+				<p>Durée du quizz : {{ quizz['duration'] }} secondes</p>
+				<p>Date : {{ quizz['date'] }}</p>
+			{% endfor %}
+		</article>
+		<h2 class="h2_display_desktop text-white">
+			<a href="/quizz">PAGE PRINCIPAL</a>
+		</h2>
+	</section>
+
+</body>
 
 {% endblock %}

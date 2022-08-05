@@ -2,7 +2,7 @@
 let profil_btn = document.querySelector(".profil_pic");
 
 profil_btn.addEventListener("click", () => {
-    window.open("/users");
+    window.location.replace("/users");
 });
 
 (function () {
