@@ -1,0 +1,91 @@
+:root {
+    --color-background-blue: #A1CFD6;
+    --color-background-blue-mid: #2E4F72;
+    --color-background-darkblue: #020D1E;
+    --color-white-transparent: radial-gradient(51.61% 50% at 50% 50%, #A1CFD6 0%, rgba(161, 207, 214, 0) 100%);
+    --boxshadow-transparent: rgba(15, 34, 40, 0.65);;
+  }
+
+  .log-body-bg {
+    background-image: url("../img/background_profil _desktop.jpg");
+    background-size: cover;
+
+  }
+
+  #profil_section_profil{
+    margin-inline: 5em;
+    margin-block: 5em;
+    width: 30em;
+  }
+
+  .article_profil {
+    background-color: var(--color-background-blue);
+  }
+
+  table{
+    margin-inline: 2em;
+  }
+
+  tr{
+    margin-block: 1em;
+    border-color: var(--color-background-blue);
+  }
+
+  td{
+    text-align: start;
+  }
+
+  .stat_profil {
+    width: 7em;
+    height: 7em;
+    color: #020D1E;
+  }
+
+  h3{
+    background-color: var(--color-background-darkblue);
+    width: 10em;
+    /* height: 15%; */
+    padding: 0.5em;
+  }
+
+  .fipie{
+    background-color: var(--boxshadow-transparent);
+  }
+
+  h2{
+    margin-top: 4em;
+    background-color: var(--color-background-darkblue);
+    width: 10em;
+    padding: 0.5em;
+    margin-left: 10em;
+    text-align: center;
+  }
+
+  @media only screen and (max-width: 480px) {
+    .log-body-bg {
+      background-image: url("../img/background_profil.jpg");
+      background-repeat: repeat;
+    }
+
+    #profil_section_profil{
+      margin-inline: 2em;
+      margin-block: 2em;
+      width: 20em;
+      display: flex;
+      flex-direction: column;
+    }
+
+      .stat_profil {
+        width: 10em;
+        height: 10em;
+        color: #020D1E;
+      }
+
+      table{
+        margin-inline: 0.1em;
+      }
+
+      tbody{
+        margin: 0.5em;
+      }
+    }
