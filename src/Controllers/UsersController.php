@@ -41,6 +41,17 @@ class UsersController extends Controller
         }
     
         if(!empty($_POST)) {
+
+            //Connexion en invité
+            if($_POST['username'] == 'invite' && $_POST['password'] == 'invite') {
+                $_SESSION['user'] = [
+                    'id' => 2,
+                    'username' => 'Invité'
+                ];
+                echo 'Utilisateur connecté';
+                exit;
+            }
+
             if(isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['password']) && !empty($_POST['password'])) {
                 $userModel = new UsersModel;
                 $userArray = $userModel->findOneByUsername(strip_tags($_POST['username']));
