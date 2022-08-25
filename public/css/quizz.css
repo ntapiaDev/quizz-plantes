@@ -2,6 +2,14 @@ h1 {
     margin: 1em;
 }
 
+.timer {
+    margin-bottom: 1em;
+    display: none;
+}
+.timer.visible {
+    display: block;
+}
+
 .line {
     width: 75%;
     height: .5em;

@@ -91,8 +91,8 @@ class UsersController extends Controller
                 $firstname = strip_tags($_POST['firstname']);
                 $username = strip_tags($_POST['username']);
                 $email = strip_tags($_POST['email']);
-                $password = password_hash($_POST['password'], PASSWORD_ARGON2I);
-                
+                $password = password_hash($_POST['password'], PASSWORD_BCRYPT); //PASSWORD_ARGON2I
+
                 $user = new UsersModel;
                 $user->setLastname($lastname)
                     ->setFirstname($firstname)

@@ -4,18 +4,27 @@ import Quizz from "./Class/Quizz";
 let length = 15;
 let choices = 4;
 
+//Quizz Chrono
+let timer = 5;
+let time = 0;
+let showTimer = document.querySelector('.timer span');
+let progressTimer = document.querySelector('.timer progress');
+let timout;
+
 let counter = 0;
 
 let proposals = [];
 
-//Quizz normal ou hiver :
+//Quizz normal, chrono ou hiver :
 let type = window.location.href.split('/')[4];
 document.querySelector('h1 span').textContent = type;
-let uri = type == "normal" ? "/quizz/getAllPlantes" : "/quizz/getWinterPlantes";
+let uri = type == "normal" || "chrono" ? "/quizz/getAllPlantes" : "/quizz/getWinterPlantes";
 
-if(type == "hiver") {
+if (type == "hiver") {
     document.querySelector('.line').classList.add('hiver');
     document.querySelector('.colored-bg').classList.add('hiver');
+} else if (type == "chrono") {
+    document.querySelector('.timer').classList.add('visible');
 }
 
 //Récupération des données et initialisation du quizz
@@ -34,12 +43,32 @@ const getAllDatas = () => {
 
             //Affichage du quizz
             document.querySelector('.total').textContent = length;
+
+            //Quizz chronométré
+            const updateTimer = () => {
+                showTimer.textContent = timer - time;
+                progressTimer.max = timer;
+                progressTimer.value = time;
+                time++;
+                if (time <= timer) {
+                    timout = setTimeout(updateTimer, 1000);
+                } else {
+                    proposals.push(null);
+                    updateQuizz();
+                }
+            }
+
             let startTimer = new Date();
             const updateQuizz = (e) => {
+                clearTimeout(timout);
+                time = 0;
+                type == "chrono" ? updateTimer() : '';
 
                 if (e != undefined) {
                     proposals.push(e.target.textContent != "" ? e.target.textContent : e.target.src.split("/")[4]);
                 }
+
+                console.log(proposals);
 
                 //update
                 let image = document.querySelector(".solo-image");

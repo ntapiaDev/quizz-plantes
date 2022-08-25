@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\PlantesModel;
 use App\Models\QuizzModel;
+use App\Models\UsersModel;
 
 class QuizzController extends Controller
 {
@@ -38,10 +39,7 @@ class QuizzController extends Controller
      */
     public function index()
     {
-        if(!isset($_SESSION['user'])) {
-            header('Location: /users/login');
-            exit;
-        }
+        UsersModel::isLogged();
 
         $username = $_SESSION['user']['username'];
 
@@ -57,25 +55,31 @@ class QuizzController extends Controller
      */
     public function normal()
     {
-        if(!isset($_SESSION['user'])) {
-            header('Location: /users/login');
-            exit;
-        }
+        UsersModel::isLogged();
 
         $this->twig->display('quizz/quizz.html.twig');
     }
 
     /**
-     * Affiche la page du quizz
+     * Affiche la page du quizz hiver
      *
      * @return void
      */
     public function hiver()
     {
-        if(!isset($_SESSION['user'])) {
-            header('Location: /users/login');
-            exit;
-        }
+        UsersModel::isLogged();
+        
+        $this->twig->display('quizz/quizz.html.twig');
+    }
+
+    /**
+     * Affiche la page du quizz chronométré
+     *
+     * @return void
+     */
+    public function chrono()
+    {
+        UsersModel::isLogged();
         
         $this->twig->display('quizz/quizz.html.twig');
     }

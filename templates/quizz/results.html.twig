@@ -18,11 +18,17 @@
             <img src="/img/{{ question["image"]}}" class="image">
             <p>Réponse : {{ question["answer"] }}</p>
             <p>Votre réponse : <span class={{ question["answer"]==question["proposal"] ? "success" : "error" }}>{{
-                    question["proposal"] }}</span></p>
+                    question["proposal"] ? question["proposal"] : "Non répondu" }}</span></p>
             {% else %}
             <p>Réponse : <img src="/img/{{ question["answer"] }}" class="image"></p>
-            <p>Votre réponse : <img src="/img/{{ question["proposal"] }}" class={{ question["answer"]==question["proposal"]
-                    ? "'image image-success'" : "'image image-error'" }}></p>
+            <p>Votre réponse : 
+                {% if question["proposal"] %}
+            <img src="/img/{{ question["proposal"] }}" class={{ question["answer"]==question["proposal"]
+                    ? "'image image-success'" : "'image image-error'" }}>
+                {% else %}
+                    <span class="error">Non répondu</span>
+                {% endif %}
+            </p>
             {% endif %}
         </div>
         {% endfor %}

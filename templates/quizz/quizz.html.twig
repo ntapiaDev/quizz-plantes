@@ -7,13 +7,16 @@
 {% endblock %}
 
 {% block javascript %}
-<script type="module" src="/js/app.js" defer></script>
+<script type="module" src="/js/quizz-app.js" defer></script>
 {% endblock %}
 
 {% block body %}
 <main>
     <section>
         <h1>Quizz <span></span> :</h1>
+        <div class="timer">
+            <p>Temps restant : <span></span> sec</p><progress id="timer" value="" max=""></progress>
+        </div>
         <div class="line"></div>   
 
         <div class="image-container">            

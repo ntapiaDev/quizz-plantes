@@ -28,6 +28,14 @@ class UsersModel extends Model
         ];
     }
 
+    public static function isLogged()
+    {
+        if(!isset($_SESSION['user'])) {
+            header('Location: /users/login');
+            exit;
+        }
+    }
+
     /**
      * Get the value of id
      */ 
