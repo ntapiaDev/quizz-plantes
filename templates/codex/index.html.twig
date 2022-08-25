@@ -1,0 +1,73 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Codex des plantes du quizz{% endblock %}
+
+{% block stylesheets %}<link rel="stylesheet" href="css/codex.css">{% endblock %}
+{% block javascript %}<script src="js/codex.js" defer></script>{% endblock %}
+
+{% block body %}
+	<section class="codex">
+
+		<h1>Codex !</h1>
+
+        <div class="filter">
+            <div class="checkboxes">
+                <div class="checkbox">
+                    <input type="checkbox" id="arbuste" checked>
+                    <label for="arbuste">Arbuste</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" id="arbrisseau" checked>
+                    <label for="arbrisseau">Arbrisseau</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" id="arbre" checked>
+                    <label for="arbre">Arbre</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" id="fougère" checked>
+                    <label for="fougère">Fougère</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" id="liane" checked>
+                    <label for="liane">Liane</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" id="palmier" checked>
+                    <label for="palmier">Palmier</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" id="plante" checked>
+                    <label for="plante">Plante</label>
+                </div>
+            </div>
+        </div>
+
+		<div class="codex-grid">
+			{% for plante in plantes %}
+				<div class="card" data-category={{plante.Categorie}}>
+					<h3 class="title" style="background-color: {{ plante.Categorie == 'fougère' ?
+                        '#FFE588' : plante.Categorie == 'arbrisseau' ?
+                        '#FFB169' : plante.Categorie == 'arbuste' ?
+                        '#FF9FC2' : plante.Categorie == 'arbre' ?
+                        '#F15050' : plante.Categorie == 'palmier' ?
+                        '#9ACCA5' : plante.Categorie == 'liane' ?
+                        '#A1CED6' : plante.Categorie == 'plante' ?
+                        '#6FC15A' }}">{{plante.nom_latin}}</h3>
+					<p class="label">Nom commun :</p>
+					<p class="data vernacular">{{plante.nom_fr}}</p>
+					<p class="label">Famille :</p>
+					<p class="data family">{{plante.famille}}</p>
+					<p class="label">Genre :</p>
+					<p class="data gender">{{plante.nom_latin|split(' ')[0]}}</p>
+					<p class="label">Espèce :</p>
+					<p class="data species">{{plante.nom_latin|split(' ')[1]}}</p>
+					<p class="label">Cultivar :</p>
+					<p class="data cultivar">{{plante.cultivar}}</p>
+					<img class="image" src="/img/{{ plante.image }}" alt="Image de {{ plante.nom_latin }}">
+				</div>
+			{% endfor %}
+		</div>
+
+	</section>
+{% endblock %}

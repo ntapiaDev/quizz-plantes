@@ -32,6 +32,15 @@ Class PlantesModel extends Model
     }
 
     /**
+     * Récupère les plantes pour le quizz normal
+     * @return [Plantes]
+     */
+    public function findAllPlants()
+    {
+        return $this->request("SELECT * FROM $this->table ORDER BY nom_latin")->fetchAll();
+    }
+
+    /**
      * Récupère les plantes pour le quizz hiver
      * @return [Plantes]
      */
