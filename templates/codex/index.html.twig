@@ -12,22 +12,30 @@
 
         <div class="filter">
 
-            <select id="famille">
-                <option value="all">Choisir une famille</option>
-                {% for famille in familles %}
-                    <option value="{{famille['famille']}}">{{famille['famille']|capitalize}}</option>
-                {% endfor %}
-            </select>
+            <div class="search-bar">
+                <select id="famille">
+                    <option value="all">Choisir une famille</option>
+                    {% for famille in familles %}
+                        <option value="{{famille['famille']}}">{{famille['famille']|capitalize}}</option>
+                    {% endfor %}
+                </select>
+
+                <div class="search">
+                    <input type="text" id="latin">
+                    {# <label for="latin">Recherche</label> #}
+                </div>
+            </div>
+            
 
             <div class="checkboxes">
                 {% for categorie in categories %}
                     <div class="checkbox">
-                        <input type="checkbox" id="{{categorie['Categorie']}}" checked="false">
+                        <input type="checkbox" id="{{categorie['Categorie']}}" checked="false" class="checkbox-category">
                         <label for="{{categorie['Categorie']}}">{{categorie['Categorie']|capitalize}}</label>
                     </div>
                 {% endfor %}
                 <div class="checkbox">
-                    <input type="checkbox" id="checkAll" value="checkAll" checked>
+                    <input type="checkbox" id="checkAll" data-id="checkAll" checked>
                     <label for="checkAll">Tout cocher</label>
                 </div>                 
             </div>

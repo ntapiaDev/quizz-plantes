@@ -2,6 +2,24 @@ h1 {}
 
 /* FILTER */
 
+.search-bar {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.search-bar select {
+    font-size: 1.2em;
+    border-radius: 15px;
+    padding: .1em 0.7em;
+}
+.search input {
+    height: 10px;
+    position: relative;
+    top: 14px;
+}
+
 .checkboxes {
     width: 50%;
     margin: auto;
