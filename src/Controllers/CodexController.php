@@ -17,16 +17,17 @@ class CodexController extends Controller
 
         $plantesModel = new PlantesModel;
         $plantes = $plantesModel->findAllPlants();
-
-        // var_dump($plantes);
+        $familles = $plantesModel->getFamilies();
+        $categories = $plantesModel->getCategories();
 
         // if(isset($_GET['page'])) {
-
         // }
         // var_dump(array_slice($plantes, 0, 1));
 
         $this->twig->display('codex/index.html.twig', [
-            'plantes' => $plantes
+            'plantes' => $plantes,
+            'familles' => $familles,
+            'categories' => $categories
         ]);
     }    
 }

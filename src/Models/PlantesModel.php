@@ -48,4 +48,22 @@ Class PlantesModel extends Model
     {
         return $this->request("SELECT * FROM $this->table WHERE floraison RLIKE 'décembre|janvier|février|mars'")->fetchAll();
     }
+
+    /**
+     * Récupère les familles de plantes
+     * @return [Plantes]
+     */
+    public function getFamilies()
+    {
+        return $this->request("SELECT DISTINCT famille FROM $this->table ORDER BY famille ASC")->fetchAll();
+    }
+
+    /**
+     * Récupère les categories de plantes
+     * @return [Plantes]
+     */
+    public function getCategories()
+    {
+        return $this->request("SELECT DISTINCT Categorie FROM $this->table ORDER BY Categorie ASC")->fetchAll();
+    }
 }

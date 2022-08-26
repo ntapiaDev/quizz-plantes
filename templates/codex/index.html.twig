@@ -11,41 +11,32 @@
 		<h1>Codex !</h1>
 
         <div class="filter">
+
+            <select id="famille">
+                <option value="all">Choisir une famille</option>
+                {% for famille in familles %}
+                    <option value="{{famille['famille']}}">{{famille['famille']|capitalize}}</option>
+                {% endfor %}
+            </select>
+
             <div class="checkboxes">
+                {% for categorie in categories %}
+                    <div class="checkbox">
+                        <input type="checkbox" id="{{categorie['Categorie']}}" checked="false">
+                        <label for="{{categorie['Categorie']}}">{{categorie['Categorie']|capitalize}}</label>
+                    </div>
+                {% endfor %}
                 <div class="checkbox">
-                    <input type="checkbox" id="arbuste" checked>
-                    <label for="arbuste">Arbuste</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" id="arbrisseau" checked>
-                    <label for="arbrisseau">Arbrisseau</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" id="arbre" checked>
-                    <label for="arbre">Arbre</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" id="fougère" checked>
-                    <label for="fougère">Fougère</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" id="liane" checked>
-                    <label for="liane">Liane</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" id="palmier" checked>
-                    <label for="palmier">Palmier</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" id="plante" checked>
-                    <label for="plante">Plante</label>
-                </div>
+                    <input type="checkbox" id="checkAll" value="checkAll" checked>
+                    <label for="checkAll">Tout cocher</label>
+                </div>                 
             </div>
+            <p><span class="count"></span> plantes sélectionnées.</p>
         </div>
 
 		<div class="codex-grid">
 			{% for plante in plantes %}
-				<div class="card" data-category={{plante.Categorie}}>
+				<div class="card" data-category={{plante.Categorie}} data-family={{plante.famille}}>
 					<h3 class="title" style="background-color: {{ plante.Categorie == 'fougère' ?
                         '#FFE588' : plante.Categorie == 'arbrisseau' ?
                         '#FFB169' : plante.Categorie == 'arbuste' ?
