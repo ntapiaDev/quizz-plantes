@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Models\PlantesModel;
+use App\Models\UsersModel;
 
 class CodexController extends Controller
 {
@@ -12,6 +13,8 @@ class CodexController extends Controller
      */
     public function index()
     {
+        // UsersModel::isLogged();
+
         $plantesModel = new PlantesModel;
         $plantes = $plantesModel->findAllPlants();
 

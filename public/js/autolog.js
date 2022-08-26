@@ -11,5 +11,9 @@ submit.addEventListener('click', (e) => {
     request.open("POST", "users/login");
     request.send(formData);
 
-    window.location.replace("quizz");
+    request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status === 200) {
+            request.response === 'Utilisateur connecté' ? window.location.href = "quizz" : '';
+        }
+    }
 })
