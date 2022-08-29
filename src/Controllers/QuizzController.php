@@ -41,6 +41,8 @@ class QuizzController extends Controller
     {
         UsersModel::isLogged();
 
+        var_dump($_SESSION);
+
         $username = $_SESSION['user']['username'];
 
         $this->twig->display('quizz/index.html.twig', [

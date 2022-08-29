@@ -45,8 +45,10 @@ class UsersController extends Controller
             //Connexion en invité
             if($_POST['username'] == 'invite' && $_POST['password'] == 'invite') {
                 $_SESSION['user'] = [
-                    'id' => 2,
-                    'username' => 'Invité'
+                    'id' => '2',
+                    'username' => 'Invité',
+                    'role' => 'user',
+                    'lang' => 'Fr'
                 ];
                 echo 'Utilisateur connecté';
                 exit;

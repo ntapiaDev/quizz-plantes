@@ -9,6 +9,8 @@ class UsersModel extends Model
     protected $username;
     protected $email;
     protected $password;
+    protected $role;
+    protected $lang;
 
     public function __construct()
     {
@@ -25,7 +27,14 @@ class UsersModel extends Model
         $_SESSION['user'] = [
             'id' => $this->id,
             'username' => $this->username,
+            'role' => $this->role,
+            'lang' => $this->lang
         ];
+    }
+
+    public function changeLang()
+    {
+        
     }
 
     public static function isLogged()
@@ -152,6 +161,46 @@ class UsersModel extends Model
     public function setPassword($password)
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of role
+     */ 
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * Set the value of role
+     *
+     * @return  self
+     */ 
+    public function setRole($role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of lang
+     */ 
+    public function getLang()
+    {
+        return $this->lang;
+    }
+
+    /**
+     * Set the value of lang
+     *
+     * @return  self
+     */ 
+    public function setLang($lang)
+    {
+        $this->lang = $lang;
 
         return $this;
     }
