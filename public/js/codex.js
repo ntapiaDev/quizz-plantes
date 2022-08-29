@@ -88,7 +88,7 @@ const submitPlant = (e) => {
                     //Message de succès
                     message.classList.contains('error') ? message.classList.remove('error') : '';
                     !message.classList.contains('success') ? message.classList.add('success') : '';      
-                    document.querySelector('.message').textContent = 'Merci pour votre soumission, celle-ci sera activée par l\'administrateur'
+                    document.querySelector('.message').textContent = 'Merci pour votre soumission, celle-ci sera activée par l\'administrateur.'
                 } else {
                     message.classList.contains('success') ? message.classList.remove('success') : '';
                     !message.classList.contains('error') ? message.classList.add('error') : '';
@@ -100,7 +100,7 @@ const submitPlant = (e) => {
         //Message d'erreur
         message.classList.contains('success') ? message.classList.remove('success') : '';
         !message.classList.contains('error') ? message.classList.add('error') : '';
-        document.querySelector('.message').textContent = 'Merci de remplir tous les champs'
+        document.querySelector('.message').textContent = 'Merci de remplir tous les champs.'
     }
 }
 addSubmit.addEventListener('click', submitPlant);

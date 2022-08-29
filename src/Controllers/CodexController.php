@@ -38,25 +38,36 @@ class CodexController extends Controller
      */
     public function add()
     {
-        // if(!(isset($_POST['submission']) && UsersModel::isLogged())) {
-        //     header('Location: /codex/');
-        //     exit;
-        // }
+        if(!(isset($_POST['nameFr']) && isset($_SESSION['user']))) {
+            header('Location: /codex/');
+            exit;
+        }
+
+        $latin = ucfirst($_POST['gender']) . ' ' . lcfirst($_POST['species']);
 
         $submission = new PlantesModel;
-        $submission->setNom_fr($_POST['nameFr'])
-            ->setNom_en($_POST['nameEn'])
-            ->setNom_latin($_POST['gender'] . ' ' . $_POST['species'])
-            ->setFamille($_POST['family'])
-            ->setCultivar($_POST['cultivar'])
-            ->setFloraison($_POST['blossom'])
-            ->setCategorie($_POST['category'])
-            ->setImage($_FILES['image']['name'])
-            ->setUsername($_SESSION['user']['username']);
+        $alreadySubmitted = $submission->findOneByLatin($latin);
+        if($alreadySubmitted) {
+            echo $latin . ' est déjà présent dans notre base de données.';
+        } else if ($_FILES['image']['size'] > 200000) {
+            echo 'Votre image est trop grosse (200ko max).';
+        } else if (getimagesize($_FILES['image']['tmp_name'])[0] !== 600 && getimagesize($_FILES['image']['tmp_name'])[1] !== 600) {
+            echo 'Votre image doit avoir un format de 600px * 600px.';
+        } else {
+            $submission->setNom_fr(ucfirst($_POST['nameFr']))
+                ->setNom_en(ucfirst($_POST['nameEn']))
+                ->setNom_latin($latin)
+                ->setFamille(ucfirst($_POST['family']))
+                ->setCultivar(ucfirst($_POST['cultivar']))
+                ->setFloraison($_POST['blossom'])
+                ->setCategorie($_POST['category'])
+                ->setImage($_FILES['image']['name'])
+                ->setUsername($_SESSION['user']['username']);
         
-        $submission->create();
-        //Gestion de l'image
+            copy($_FILES['image']['tmp_name'], 'img/' . $_FILES['image']['name']); 
+            $submission->create();
 
-        echo "Soumission ajoutée";
+            echo "Soumission ajoutée";
+        }
     }
 }

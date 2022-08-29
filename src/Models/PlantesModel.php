@@ -33,6 +33,17 @@ Class PlantesModel extends Model
     }
 
     /**
+     * Récupère le nom d'un user à partir de son nom latin
+     *
+     * @param string $latin
+     * @return mixed
+     */
+    public function findOneByLatin(string $latin)
+    {
+        return $this->request("SELECT * FROM $this->table WHERE nom_latin = ?", [$latin])->fetch();
+    }
+
+    /**
      * Récupère les plantes pour le quizz normal
      * @return [Plantes]
      */
