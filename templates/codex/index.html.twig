@@ -24,8 +24,34 @@
                     <input type="text" id="latin">
                     {# <label for="latin">Recherche</label> #}
                 </div>
-            </div>
-            
+
+                <div class="add">
+                    <p class="addBtn">Soumettre une nouvelle plante</p>
+                </div>
+                <div class="addForm hidden">
+                    <p class="message"></p>
+                    <form id="submission" name="submission" enctype="multipart/form-data">
+                        <input type="text" id="nameFr" placeholder="Nom commun (fr)">
+                        <input type="text" id="nameEn" placeholder="Nom commun (en)">
+                        <input type="text" id="family" placeholder="Famille">
+                        <input type="text" id="gender" placeholder="Genre">
+                        <input type="text" id="species" placeholder="Espèce">
+                        <input type="text" id="cultivar" placeholder="Cultivar">
+                        <input type="text" id="blossom" placeholder="Dates de floraison">
+                        <select id="category">
+                            <option value="arbre">Arbre</option>
+                            <option value="arbrisseau">Arbrisseau</option>
+                            <option value="arbuste">Arbuste</option>
+                            <option value="fougere">Fougère</option>
+                            <option value="liane">Liane</option>
+                            <option value="palmier">Palmier</option>
+                            <option value="plante">Plante</option>
+                        </select>
+                        <input type="file" id="image" name="image" class="fileInput" accept="image/png, image/jpeg">
+                        <button class="addSubmit">Envoyer</button>
+                    </form>
+                </div>
+            </div>            
 
             <div class="checkboxes">
                 {% for categorie in categories %}
@@ -44,29 +70,61 @@
 
 		<div class="codex-grid">
 			{% for plante in plantes %}
-				<div class="card" data-category={{plante.Categorie}} data-family={{plante.famille}}>
-					<h3 class="title" style="background-color: {{ plante.Categorie == 'fougère' ?
-                        '#FFE588' : plante.Categorie == 'arbrisseau' ?
-                        '#FFB169' : plante.Categorie == 'arbuste' ?
-                        '#FF9FC2' : plante.Categorie == 'arbre' ?
-                        '#F15050' : plante.Categorie == 'palmier' ?
-                        '#9ACCA5' : plante.Categorie == 'liane' ?
-                        '#A1CED6' : plante.Categorie == 'plante' ?
-                        '#6FC15A' }}">{{plante.nom_latin}}</h3>
-					<p class="label">Nom commun :</p>
-					<p class="data vernacular">{{plante.nom_fr}}</p>
-					<p class="label">Famille :</p>
-					<p class="data family">{{plante.famille}}</p>
-					<p class="label">Genre :</p>
-					<p class="data gender">{{plante.nom_latin|split(' ')[0]}}</p>
-					<p class="label">Espèce :</p>
-					<p class="data species">{{plante.nom_latin|split(' ')[1]}}</p>
-					<p class="label">Cultivar :</p>
-					<p class="data cultivar">{{plante.cultivar}}</p>
-					<img class="image" src="/img/{{ plante.image }}" alt="Image de {{ plante.nom_latin }}">
-				</div>
+                {% if plante.active %}
+                    <div class="card-active" data-category={{plante.Categorie}} data-family={{plante.famille}}>
+                        <h3 class="title" style="background-color: {{ plante.Categorie == 'fougère' ?
+                            '#FFE588' : plante.Categorie == 'arbrisseau' ?
+                            '#FFB169' : plante.Categorie == 'arbuste' ?
+                            '#FF9FC2' : plante.Categorie == 'arbre' ?
+                            '#F15050' : plante.Categorie == 'palmier' ?
+                            '#9ACCA5' : plante.Categorie == 'liane' ?
+                            '#A1CED6' : plante.Categorie == 'plante' ?
+                            '#6FC15A' }}">{{plante.nom_latin}}</h3>
+                        <p class="label">Nom commun :</p>
+                        <p class="data vernacular">{{plante.nom_fr}}</p>
+                        <p class="label">Famille :</p>
+                        <p class="data family">{{plante.famille}}</p>
+                        <p class="label">Genre :</p>
+                        <p class="data gender">{{plante.nom_latin|split(' ')[0]}}</p>
+                        <p class="label">Espèce :</p>
+                        <p class="data species">{{plante.nom_latin|split(' ')[1]}}</p>
+                        <p class="label">Cultivar :</p>
+                        <p class="data cultivar">{{plante.cultivar}}</p>
+                        <img class="image" src="/img/{{ plante.image }}" alt="Image de {{ plante.nom_latin }}">
+                    </div>
+                {% endif %}
 			{% endfor %}
 		</div>
+
+        {% if isAdmin %}
+        <div class="pending-grid">
+            {% for plante in plantes %}
+                {% if not plante.active %}
+                    <div class="card-inactive" data-category={{plante.Categorie}} data-family={{plante.famille}}>
+                        <h3 class="title" style="background-color: {{ plante.Categorie == 'fougère' ?
+                            '#FFE588' : plante.Categorie == 'arbrisseau' ?
+                            '#FFB169' : plante.Categorie == 'arbuste' ?
+                            '#FF9FC2' : plante.Categorie == 'arbre' ?
+                            '#F15050' : plante.Categorie == 'palmier' ?
+                            '#9ACCA5' : plante.Categorie == 'liane' ?
+                            '#A1CED6' : plante.Categorie == 'plante' ?
+                            '#6FC15A' }}">{{plante.nom_latin}}</h3>
+                        <p class="label">Nom commun :</p>
+                        <p class="data vernacular">{{plante.nom_fr}}</p>
+                        <p class="label">Famille :</p>
+                        <p class="data family">{{plante.famille}}</p>
+                        <p class="label">Genre :</p>
+                        <p class="data gender">{{plante.nom_latin|split(' ')[0]}}</p>
+                        <p class="label">Espèce :</p>
+                        <p class="data species">{{plante.nom_latin|split(' ')[1]}}</p>
+                        <p class="label">Cultivar :</p>
+                        <p class="data cultivar">{{plante.cultivar}}</p>
+                        <img class="image" src="/img/{{ plante.image }}" alt="Image de {{ plante.nom_latin }}">
+                    </div>
+                {% endif %}
+			{% endfor %}
+        </div>
+        {% endif %}
 
 	</section>
 {% endblock %}

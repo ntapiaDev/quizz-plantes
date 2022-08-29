@@ -1,9 +1,24 @@
 h1 {}
 
+.message.success, .message.error {
+    margin-bottom: 1em;
+    padding: 1em;
+}
+.message.success {
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+.message.error {
+    color: #721c24;    
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+}
+
 /* FILTER */
 
 .search-bar {
-    width: 50%;
+    width: 100%;
     margin: auto;
     display: flex;
     align-items: center;
@@ -39,9 +54,42 @@ h1 {}
     white-space: nowrap;
 }
 
+.add {
+    cursor: pointer;
+}
+.addForm {
+    /* width: 100%; */
+    margin-top: 1em;
+}
+.addForm form {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.addForm input {
+    width: inherit !important;
+    height: 10px;
+    margin: 0 .5em;
+}
+.addForm select {
+    height: 30px;
+    margin: 0 .5em;
+}
+.addForm button {
+    height: 30px;
+    padding: 0 1em;
+    border-radius: 15px;
+    border: 1px solid black;
+}
+.addForm .fileInput {
+    height: 43px;
+    margin-top: -13px;
+    border: none !important;
+}
+
 /* LISTE DES PLANTES */
 
-.codex-grid {
+.codex-grid, .pending-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2em;
@@ -86,19 +134,19 @@ h1 {}
 }
 
 @media screen and (max-width: 1280px) {
-    .codex-grid {
+    .codex-grid, .pending-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
 @media screen and (max-width: 1024px) {
-    .codex-grid {
+    .codex-grid, .pending-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media screen and (max-width: 768px) {
-    .codex-grid {
+    .codex-grid, .pending-grid {
         grid-template-columns: repeat(1, 1fr);
     }
 }

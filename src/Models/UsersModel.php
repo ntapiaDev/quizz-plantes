@@ -45,6 +45,12 @@ class UsersModel extends Model
         }
     }
 
+    public static function isAdmin()
+    {
+        return isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin';
+            
+    }
+
     /**
      * Get the value of id
      */ 

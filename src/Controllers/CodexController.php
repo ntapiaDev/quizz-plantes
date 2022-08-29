@@ -13,7 +13,8 @@ class CodexController extends Controller
      */
     public function index()
     {
-        // UsersModel::isLogged();
+        UsersModel::isLogged();
+        $isAdmin = UsersModel::isAdmin();
 
         $plantesModel = new PlantesModel;
         $plantes = $plantesModel->findAllPlants();
@@ -27,7 +28,35 @@ class CodexController extends Controller
         $this->twig->display('codex/index.html.twig', [
             'plantes' => $plantes,
             'familles' => $familles,
-            'categories' => $categories
+            'categories' => $categories,
+            'isAdmin' => $isAdmin
         ]);
-    }    
+    }  
+    
+    /**
+     * Permet d'ajouter une nouvelle soumission
+     */
+    public function add()
+    {
+        // if(!(isset($_POST['submission']) && UsersModel::isLogged())) {
+        //     header('Location: /codex/');
+        //     exit;
+        // }
+
+        $submission = new PlantesModel;
+        $submission->setNom_fr($_POST['nameFr'])
+            ->setNom_en($_POST['nameEn'])
+            ->setNom_latin($_POST['gender'] . ' ' . $_POST['species'])
+            ->setFamille($_POST['family'])
+            ->setCultivar($_POST['cultivar'])
+            ->setFloraison($_POST['blossom'])
+            ->setCategorie($_POST['category'])
+            ->setImage($_FILES['image']['name'])
+            ->setUsername($_SESSION['user']['username']);
+        
+        $submission->create();
+        //Gestion de l'image
+
+        echo "Soumission ajoutée";
+    }
 }
