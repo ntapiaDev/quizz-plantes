@@ -20,7 +20,7 @@ const update = (e) => {
     count = 0;
     const addToFilter = (card) => {
         card.classList.remove('hidden');
-        count++;
+        !card.classList.contains('deleted') ? count++ : '';
     }
     //Filtre par familles
     let famille = select.value;
@@ -31,7 +31,7 @@ const update = (e) => {
     checkboxes.forEach(checkbox => checkbox.checked ? checked.push(checkbox.attributes[1].value) : '');
 
     cards = document.querySelectorAll('.card-container-active');
-    cards.forEach(card => (famille == card.dataset.family || famille == 'all') && (card.children[0].children[1].textContent.toLowerCase().includes(latin) || latin === '') && checked.includes(card.dataset.category) ? addToFilter(card) : card.classList.add('hidden'));
+    cards.forEach(card => (famille == card.dataset.family || famille == 'all') && (card.children[0].children[2].textContent.toLowerCase().includes(latin) || latin === '') && checked.includes(card.dataset.category) ? addToFilter(card) : card.classList.add('hidden'));
     
     document.querySelector('.count').textContent = count;
 }
@@ -118,6 +118,7 @@ const pendingCards = Array.from(pending.children);
 
 const accepts = document.querySelectorAll('.accept');
 const rejects = document.querySelectorAll('.reject');
+const edits = document.querySelectorAll('.edit');
 
 let pendingCount = pendingCards.length;
 if(pendingCount > 0) {
@@ -125,12 +126,17 @@ if(pendingCount > 0) {
     document.querySelector('.pending-title').classList.add('visible');
 }
 
-const pendingCountUpdate = () => {
-    pendingCount -= 1;
-    if(pendingCount > 0) {
-        document.querySelector('.pending-count').textContent = '(' + pendingCount + ' en attende de validation)';
+const pendingCountUpdate = (cible) => {
+    if(cible === 'list') {
+        count -=1;
+        document.querySelector('.count').textContent = count;
     } else {
-        document.querySelector('.pending-count').textContent = '';
+        pendingCount -= 1;
+        if(pendingCount > 0) {
+            document.querySelector('.pending-count').textContent = '(' + pendingCount + ' en attende de validation)';
+        } else {
+            document.querySelector('.pending-count').textContent = '';
+        }
     }
 }
 const pendingUpdate = (node) => {
@@ -140,9 +146,10 @@ const pendingUpdate = (node) => {
     clone.classList.add('card-container-active');
     clone.children[1].firstChild.style.display = 'none';
     clone.children[1].children[1].addEventListener('click', deleteSubmission);
-    let latin = clone.children[0].children[1].textContent;
+    clone.children[1].children[2].addEventListener('click', openEdit);
+    let latin = clone.children[0].children[2].textContent;
     //Clone de la card dans la liste des cards :
-    const sibling = Array.from(cards).find(card => card.children[0].children[1].textContent > latin);
+    const sibling = Array.from(cards).find(card => card.children[0].children[2].textContent > latin);
     document.querySelector('.codex-grid').insertBefore(clone, sibling);
     clone.classList.remove('hidden');
     update();
@@ -167,12 +174,33 @@ const deleteSubmission = async (e) => {
         e.target.parentNode.parentNode.children[0].children[0].classList.add('reject');
         e.target.parentNode.parentNode.children[0].children[0].classList.add('alert-visible');
         e.target.parentNode.style.display = 'none';
-        pendingCountUpdate();        
+        //Mettre à jour le count (liste principale ou soumissions)
+        e.target.parentNode.parentNode.classList.add('deleted');
+        e.target.parentNode.parentNode.classList.contains('card-container-active') ? pendingCountUpdate('list') : pendingCountUpdate('submit');         
+    }
+}
+const openEdit = async (e) => {
+    let editScreen = e.target.parentNode.parentNode.children[0].children[1]
+    let editForm = editScreen.children[1];
+    editScreen.classList.toggle('edit-visible');
+
+    //Récupération des données
+    if(editScreen.classList.contains('edit-visible')) {
+        const response = await fetch(`/quizz/getPlantById/${e.target.parentNode.dataset.id}`);
+        const plant = await response.json();
+        console.log(plant);
+
+        editForm.children[0].value = plant.nom_fr;
+        editForm.children[1].value = plant.nom_en;
+        editForm.children[2].value = plant.nom_latin;
+        editForm.children[3].value = plant.famille;
+        editForm.children[4].value = plant.cultivar;
+        editForm.children[5].value = plant.floraison;
+        editForm.children[6].value = plant.Categorie;
+        // editForm.children[7].value = plant.image;
     }
 }
 
 accepts.forEach(accept => accept.addEventListener('click', activate));
 rejects.forEach(reject => reject.addEventListener('click', deleteSubmission));
-
-//EDITION DE LA CARD
-
+edits.forEach(edit => edit.addEventListener('click', openEdit));

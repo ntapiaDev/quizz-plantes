@@ -191,6 +191,9 @@ h1 {}
     opacity: 0;
     transition: opacity 1s;
 }
+.deleted .alert {
+    z-index: 5;
+}
 .alert-message {
     padding: 1em;
     font-weight: bold;
@@ -200,6 +203,33 @@ h1 {}
 }
 .alert-visible {
     opacity: 0.8;
+}
+
+/* EDIT SCREEN */
+.edit-screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background-color: #fff3cd;
+}
+.edit-screen.edit-visible {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.edit-screen form {
+    padding: 0 1em;
+}
+.edit-screen input, .edit-screen select, .edit-screen button {
+    width: 100%;
+    padding: .5em;
+    border-radius: 1em;
+    margin-bottom: 1em !important;
+    font-size: 1em !important;
+}
+.edit-screen select, .edit-screen button {
+    text-align: center;
 }
 
 @media screen and (max-width: 1280px) {

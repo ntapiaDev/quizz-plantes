@@ -80,6 +80,37 @@
                 <div class="card-container-active" data-category={{plante.Categorie}} data-family={{plante.famille}}>
                     <div class="card">
                     <div class="alert"><p class="alert-message"></p></div>
+                    <!-- EDIT SCREEN -->
+                    <div class="edit-screen">
+                        <h3 class="title" style="background-color: {{ plante.Categorie == 'fougère' ?
+                            '#FFE588' : plante.Categorie == 'arbrisseau' ?
+                            '#FFB169' : plante.Categorie == 'arbuste' ?
+                            '#FF9FC2' : plante.Categorie == 'arbre' ?
+                            '#F15050' : plante.Categorie == 'palmier' ?
+                            '#9ACCA5' : plante.Categorie == 'liane' ?
+                            '#A1CED6' : plante.Categorie == 'plante' ?
+                            '#6FC15A' }}">{{plante.nom_latin}}</h3>
+                        <form name="edit" enctype="multipart/form-data">
+                            <input type="text" id="editNameFr" placeholder="Nom commun (fr)">
+                            <input type="text" id="editNameEn" placeholder="Nom commun (en)">
+                            <input type="text" id="editNameLatin" placeholder="Nom latin">
+                            <input type="text" id="editFamily" placeholder="Famille">
+                            <input type="text" id="editCultivar" placeholder="Cultivar">
+                            <input type="text" id="editBlossom" placeholder="Dates de floraison">
+                            <select id="editCategory">
+                                <option value="arbre">Arbre</option>
+                                <option value="arbrisseau">Arbrisseau</option>
+                                <option value="arbuste">Arbuste</option>
+                                <option value="fougère">Fougère</option>
+                                <option value="liane">Liane</option>
+                                <option value="palmier">Palmier</option>
+                                <option value="plante">Plante</option>
+                            </select>
+                            <input type="file" id="editImage" name="editImage" class="fileInput" accept="image/png, image/jpeg">
+                            <button class="addSubmit">Envoyer</button>
+                        </form>
+                    </div>
+                    <!-- EDIT SCREEN -->
                         <h3 class="title" style="background-color: {{ plante.Categorie == 'fougère' ?
                             '#FFE588' : plante.Categorie == 'arbrisseau' ?
                             '#FFB169' : plante.Categorie == 'arbuste' ?
@@ -116,6 +147,38 @@
                 <div class="card-container-inactive" data-category={{plante.Categorie}} data-family={{plante.famille}}>
                     <div class="card">
                     <div class="alert"><p class="alert-message"></p></div>
+                    <!-- EDIT SCREEN -->
+                    <div class="edit-screen">
+                        <h3 class="title" style="background-color: {{ plante.Categorie == 'fougère' ?
+                            '#FFE588' : plante.Categorie == 'arbrisseau' ?
+                            '#FFB169' : plante.Categorie == 'arbuste' ?
+                            '#FF9FC2' : plante.Categorie == 'arbre' ?
+                            '#F15050' : plante.Categorie == 'palmier' ?
+                            '#9ACCA5' : plante.Categorie == 'liane' ?
+                            '#A1CED6' : plante.Categorie == 'plante' ?
+                            '#6FC15A' }}">{{plante.nom_latin}}</h3>
+                        <form name="edit" enctype="multipart/form-data">
+                            <input type="text" id="editNameFr" placeholder="Nom commun (fr)">
+                            <input type="text" id="editNameEn" placeholder="Nom commun (en)">
+                            <input type="text" id="editFamily" placeholder="Famille">
+                            <input type="text" id="editGender" placeholder="Genre">
+                            <input type="text" id="editSpecies" placeholder="Espèce">
+                            <input type="text" id="editCultivar" placeholder="Cultivar">
+                            <input type="text" id="editBlossom" placeholder="Dates de floraison">
+                            <select id="editCategory">
+                                <option value="arbre">Arbre</option>
+                                <option value="arbrisseau">Arbrisseau</option>
+                                <option value="arbuste">Arbuste</option>
+                                <option value="fougère">Fougère</option>
+                                <option value="liane">Liane</option>
+                                <option value="palmier">Palmier</option>
+                                <option value="plante">Plante</option>
+                            </select>
+                            <input type="file" id="editImage" name="editImage" class="fileInput" accept="image/png, image/jpeg">
+                            <button class="addSubmit">Envoyer</button>
+                        </form>
+                    </div>
+                    <!-- EDIT SCREEN -->
                         <h3 class="title" style="background-color: {{ plante.Categorie == 'fougère' ?
                             '#FFE588' : plante.Categorie == 'arbrisseau' ?
                             '#FFB169' : plante.Categorie == 'arbuste' ?

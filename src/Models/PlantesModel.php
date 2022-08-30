@@ -22,7 +22,7 @@ Class PlantesModel extends Model
     }
 
     /**
-     * Récupère le nom d'un user à partir de son id
+     * Récupère le nom d'une plante à partir de son id
      *
      * @param integer $id
      * @return mixed
@@ -33,7 +33,7 @@ Class PlantesModel extends Model
     }
 
     /**
-     * Récupère le nom d'un user à partir de son nom latin
+     * Récupère le nom d'une plante à partir de son nom latin
      *
      * @param string $latin
      * @return mixed

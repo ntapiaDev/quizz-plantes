@@ -77,7 +77,7 @@ input {
 input::placeholder,
 input:focus,
 input {
-    text-indent: 3em;
+    text-indent: 1em;
 }
 
 input:focus {

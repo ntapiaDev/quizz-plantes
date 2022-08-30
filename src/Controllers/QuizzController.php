@@ -33,6 +33,18 @@ class QuizzController extends Controller
     }
 
     /**
+     * API qui renvoie une plante par son id
+     *
+     * @return JSON
+     */
+    public function getPlantById(int $id)
+    {
+        $plantesModel = new PlantesModel;
+        $plante = $plantesModel->findOneById($id);
+        echo json_encode($plante);
+    }
+
+    /**
      * Affiche la page du quizz
      *
      * @return void
