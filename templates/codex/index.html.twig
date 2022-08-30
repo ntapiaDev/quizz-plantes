@@ -9,7 +9,7 @@
 {% block body %}
 	<section class="codex">
 
-		<h1>Liste des plantes</h1>
+		<a href="/codex"><h1>Liste des plantes {% if isAdmin %}(accès admin){% endif %}</h1></a>
 
         <div class="filter">
 
@@ -77,7 +77,9 @@
 		<div class="codex-grid">
 			{% for plante in plantes %}
                 {% if plante.active %}
-                    <div class="card-active" data-category={{plante.Categorie}} data-family={{plante.famille}}>
+                <div class="card-container-active" data-category={{plante.Categorie}} data-family={{plante.famille}}>
+                    <div class="card">
+                    <div class="alert"><p class="alert-message"></p></div>
                         <h3 class="title" style="background-color: {{ plante.Categorie == 'fougère' ?
                             '#FFE588' : plante.Categorie == 'arbrisseau' ?
                             '#FFB169' : plante.Categorie == 'arbuste' ?
@@ -98,6 +100,10 @@
                         <p class="data cultivar">{{plante.cultivar}}</p>
                         <img class="image" src="/img/{{ plante.image }}" alt="Image de {{ plante.nom_latin }}">
                     </div>
+                    {% if isAdmin %}
+                    <p class="pending-btns" data-id={{plante.id}}><span class="accept hidden"></span><span class="fa-solid fa-xmark fa-2x reject btn"></span><span class="fa-solid fa-pen-to-square fa-2x edit btn"></span></p>
+                    {% endif %}
+                </div>
                 {% endif %}
 			{% endfor %}
 		</div>
@@ -107,8 +113,8 @@
         <div class="pending-grid">
             {% for plante in plantes %}
                 {% if not plante.active %}
-                <div class="card-container">
-                    <div class="card-inactive" data-category={{plante.Categorie}} data-family={{plante.famille}}>
+                <div class="card-container-inactive" data-category={{plante.Categorie}} data-family={{plante.famille}}>
+                    <div class="card">
                     <div class="alert"><p class="alert-message"></p></div>
                         <h3 class="title" style="background-color: {{ plante.Categorie == 'fougère' ?
                             '#FFE588' : plante.Categorie == 'arbrisseau' ?
@@ -130,8 +136,8 @@
                         <p class="data cultivar">{{plante.cultivar}}</p>
                         <img class="image" src="/img/{{ plante.image }}" alt="Image de {{ plante.nom_latin }}" loading="lazy">
                     </div>
-                    <p class="pending-btns" data-id={{plante.id}}><span class="fa-solid fa-check fa-2x accept btn"></span><span class="fa-solid fa-xmark fa-2x reject btn"></span></p>
-                    </div>
+                    <p class="pending-btns" data-id={{plante.id}}><span class="fa-solid fa-check fa-2x accept btn"></span><span class="fa-solid fa-xmark fa-2x reject btn"></span><span class="fa-solid fa-pen-to-square fa-2x edit btn"></span></p>
+                </div>
                 {% endif %}
 			{% endfor %}
         </div>

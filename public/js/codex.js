@@ -3,7 +3,7 @@ const search = document.querySelector('#latin');
 const checkboxes = document.querySelectorAll('.checkbox-category');
 const checkAll = document.querySelector('#checkAll');
 
-let cards = document.querySelectorAll('.card-active');
+let cards = [];
 
 let count = 0;
 const update = (e) => {
@@ -17,6 +17,7 @@ const update = (e) => {
     }
 
     //Filtre
+    count = 0;
     const addToFilter = (card) => {
         card.classList.remove('hidden');
         count++;
@@ -29,7 +30,8 @@ const update = (e) => {
     let checked = [];
     checkboxes.forEach(checkbox => checkbox.checked ? checked.push(checkbox.attributes[1].value) : '');
 
-    cards.forEach(card => (famille == card.dataset.family || famille == 'all') && (card.children[0].textContent.toLowerCase().includes(latin) || latin === '') && checked.includes(card.dataset.category) ? addToFilter(card) : card.classList.add('hidden'));
+    cards = document.querySelectorAll('.card-container-active');
+    cards.forEach(card => (famille == card.dataset.family || famille == 'all') && (card.children[0].children[1].textContent.toLowerCase().includes(latin) || latin === '') && checked.includes(card.dataset.category) ? addToFilter(card) : card.classList.add('hidden'));
     
     document.querySelector('.count').textContent = count;
 }
@@ -87,7 +89,6 @@ const submitPlant = (e) => {
         request.send(formData);
 
         request.onreadystatechange = function () {
-            console.log(request.response);
             if (request.readyState === 4 && request.status === 200) {
                 if (request.response === 'Soumission ajoutée') {
                     //Message de succès
@@ -117,8 +118,6 @@ const pendingCards = Array.from(pending.children);
 
 const accepts = document.querySelectorAll('.accept');
 const rejects = document.querySelectorAll('.reject');
-const alertContainers = document.querySelectorAll('.alert');
-const alertMessages = document.querySelectorAll('.alert-message');
 
 let pendingCount = pendingCards.length;
 if(pendingCount > 0) {
@@ -126,39 +125,54 @@ if(pendingCount > 0) {
     document.querySelector('.pending-title').classList.add('visible');
 }
 
-const pendingUpdate = (key, node) => {
-    count += 1;
-    document.querySelector('.count').textContent = count;
+const pendingCountUpdate = () => {
     pendingCount -= 1;
-    document.querySelector('.pending-count').textContent = '(' + pendingCount + ' en attende de validation)';
+    if(pendingCount > 0) {
+        document.querySelector('.pending-count').textContent = '(' + pendingCount + ' en attende de validation)';
+    } else {
+        document.querySelector('.pending-count').textContent = '';
+    }
+}
+const pendingUpdate = (node) => {
+    pendingCountUpdate();
     clone = node.cloneNode(true);
-    clone.classList.remove('card-inactive');
-    clone.classList.add('card-active');
-    clone.removeChild(clone.children[0]);
-    console.log(clone);
+    clone.classList.remove('card-container-inactive');
+    clone.classList.add('card-container-active');
+    clone.children[1].firstChild.style.display = 'none';
+    clone.children[1].children[1].addEventListener('click', deleteSubmission);
+    let latin = clone.children[0].children[1].textContent;
+    //Clone de la card dans la liste des cards :
+    const sibling = Array.from(cards).find(card => card.children[0].children[1].textContent > latin);
+    document.querySelector('.codex-grid').insertBefore(clone, sibling);
+    clone.classList.remove('hidden');
+    update();
     }
 
-const activate = async (key, e) => {
+const activate = async (e) => {
     const response = await fetch(`/codex/activate/${e.target.parentNode.dataset.id}`);
     const statut = await response.json();
     if(statut.code === 200) {
-        alertMessages[key].textContent = 'Accepté'
-        alertContainers[key].classList.add('accept');
-        alertContainers[key].classList.add('alert-visible');
+        pendingUpdate(e.target.parentNode.parentNode);
+        e.target.parentNode.parentNode.children[0].children[0].children[0].textContent = 'Accepté'
+        e.target.parentNode.parentNode.children[0].children[0].classList.add('accept');
+        e.target.parentNode.parentNode.children[0].children[0].classList.add('alert-visible');
         e.target.parentNode.style.display = 'none';
-        pendingUpdate(key, e.target.parentNode.parentNode.children[0]);
     }
 }
-const deleteSubmission = async (key, e) => {
+const deleteSubmission = async (e) => {
     const response = await fetch(`/codex/delete/${e.target.parentNode.dataset.id}`);
     const statut = await response.json();
     if(statut.code === 200) {
-        alertMessages[key].textContent = 'Supprimé'
-        alertContainers[key].classList.add('reject');
-        alertContainers[key].classList.add('alert-visible');
+        e.target.parentNode.parentNode.children[0].children[0].children[0].textContent = 'Supprimé'
+        e.target.parentNode.parentNode.children[0].children[0].classList.add('reject');
+        e.target.parentNode.parentNode.children[0].children[0].classList.add('alert-visible');
         e.target.parentNode.style.display = 'none';
+        pendingCountUpdate();        
     }
 }
 
-accepts.forEach((accept, key) => accept.addEventListener('click', (e) => activate(key, e)));
-rejects.forEach((reject, key) => reject.addEventListener('click', (e) => deleteSubmission(key, e)));
+accepts.forEach(accept => accept.addEventListener('click', activate));
+rejects.forEach(reject => reject.addEventListener('click', deleteSubmission));
+
+//EDITION DE LA CARD
+

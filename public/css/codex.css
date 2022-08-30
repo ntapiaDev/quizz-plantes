@@ -101,11 +101,12 @@ h1 {}
     padding: 2em;
 }
 
-.card-active, .card-inactive {
+.card {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    position: relative;
 }
 
 .title {
@@ -151,7 +152,7 @@ h1 {}
 .pending-count {
     font-weight: bold;
 }
-.card-container {
+.card-container-active, .card-container-inactive {
     padding: .1em;
 }
 .pending-btns {
@@ -168,16 +169,17 @@ h1 {}
     background-color: #f8d7da;
     border: 1px solid #f5c6cb;
 }
+.edit {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
 .btn {
     width: 2em;
     padding: .25em .5em;
     margin: .5em;
     border-radius: 1em;
     cursor: pointer;
-}
-
-.card-inactive {
-    position: relative;
 }
 .alert {
     position: absolute;

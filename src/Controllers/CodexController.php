@@ -43,7 +43,7 @@ class CodexController extends Controller
             exit;
         }
 
-        $latin = ucfirst($_POST['gender']) . ' ' . lcfirst($_POST['species']);
+        $latin = ucfirst(strtolower($_POST['gender'])) . ' ' . strtolower($_POST['species']);
 
         $submission = new PlantesModel;
         $alreadySubmitted = $submission->findOneByLatin($latin);
@@ -57,16 +57,16 @@ class CodexController extends Controller
             //Gestion de l'image
             $upload_dir = ROOT . '/public/img/';
             $ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
-            $file_name = basename(md5(rand()) . '.' . $ext);
+            $file_name = strtolower($_POST['gender']) . '_' . strtolower($_POST['species']) . '.' . $ext;
             $upload_file = $upload_dir . $file_name;
             move_uploaded_file($_FILES["image"]["tmp_name"], $upload_file);
 
-            $submission->setNom_fr(ucfirst($_POST['nameFr']))
-                ->setNom_en(ucfirst($_POST['nameEn']))
+            $submission->setNom_fr(ucfirst(strtolower($_POST['nameFr'])))
+                ->setNom_en(ucfirst(strtolower($_POST['nameEn'])))
                 ->setNom_latin($latin)
-                ->setFamille(ucfirst($_POST['family']))
-                ->setCultivar(ucfirst($_POST['cultivar']))
-                ->setFloraison($_POST['blossom'])
+                ->setFamille(ucfirst(strtolower($_POST['family'])))
+                ->setCultivar(ucfirst(strtolower($_POST['cultivar'])))
+                ->setFloraison(strtolower($_POST['blossom']))
                 ->setCategorie($_POST['category'])
                 ->setImage($file_name)
                 ->setUsername($_SESSION['user']['username']);
