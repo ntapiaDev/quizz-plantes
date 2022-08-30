@@ -79,7 +79,23 @@ Class PlantesModel extends Model
         return $this->request("SELECT DISTINCT Categorie FROM $this->table ORDER BY Categorie ASC")->fetchAll();
     }
 
-    
+    /**
+     * Active une soumission du Codex
+     * @return void
+     */
+    public function activeSubmission(int $id)
+    {
+        return $this->request("UPDATE $this->table SET active = 1 WHERE id = ?", [$id]);
+    }
+
+    /**
+     * Supprime une soumission du Codex
+     * @return void
+     */
+    public function deleteSubmission(int $id)
+    {
+        return $this->request("DELETE FROM $this->table WHERE id = ?", [$id]);
+    }
 
     /**
      * Get the value of id

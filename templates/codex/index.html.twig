@@ -3,7 +3,8 @@
 {% block title %}Codex des plantes du quizz{% endblock %}
 
 {% block stylesheets %}<link rel="stylesheet" href="css/codex.css">{% endblock %}
-{% block javascript %}<script src="js/codex.js" defer></script>{% endblock %}
+{% block javascript %}<script src="js/codex.js" defer></script>
+<script src="https://kit.fontawesome.com/015d178d74.js" crossorigin="anonymous"></script>{% endblock %}
 
 {% block body %}
 	<section class="codex">
@@ -42,7 +43,7 @@
                             <option value="arbre">Arbre</option>
                             <option value="arbrisseau">Arbrisseau</option>
                             <option value="arbuste">Arbuste</option>
-                            <option value="fougere">Fougère</option>
+                            <option value="fougère">Fougère</option>
                             <option value="liane">Liane</option>
                             <option value="palmier">Palmier</option>
                             <option value="plante">Plante</option>
@@ -66,7 +67,11 @@
                     <label for="checkAll">Tout cocher</label>
                 </div>                 
             </div>
-            <p><span class="count"></span> plantes sélectionnées.</p>
+            <p><span class="count"></span> plantes sélectionnées
+            {% if isAdmin %}
+                <a href="#pending"><span class="pending-count"></span></a>
+            {% endif %}
+            </p>
         </div>
 
 		<div class="codex-grid">
@@ -98,10 +103,13 @@
 		</div>
 
         {% if isAdmin %}
+        <h3 id="pending" class="pending-title">Soumissions en attente :</h3>
         <div class="pending-grid">
             {% for plante in plantes %}
                 {% if not plante.active %}
+                <div class="card-container">
                     <div class="card-inactive" data-category={{plante.Categorie}} data-family={{plante.famille}}>
+                    <div class="alert"><p class="alert-message"></p></div>
                         <h3 class="title" style="background-color: {{ plante.Categorie == 'fougère' ?
                             '#FFE588' : plante.Categorie == 'arbrisseau' ?
                             '#FFB169' : plante.Categorie == 'arbuste' ?
@@ -120,7 +128,9 @@
                         <p class="data species">{{plante.nom_latin|split(' ')[1]}}</p>
                         <p class="label">Cultivar :</p>
                         <p class="data cultivar">{{plante.cultivar}}</p>
-                        <img class="image" src="/img/{{ plante.image }}" alt="Image de {{ plante.nom_latin }}">
+                        <img class="image" src="/img/{{ plante.image }}" alt="Image de {{ plante.nom_latin }}" loading="lazy">
+                    </div>
+                    <p class="pending-btns" data-id={{plante.id}}><span class="fa-solid fa-check fa-2x accept btn"></span><span class="fa-solid fa-xmark fa-2x reject btn"></span></p>
                     </div>
                 {% endif %}
 			{% endfor %}
