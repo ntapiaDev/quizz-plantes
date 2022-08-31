@@ -190,6 +190,7 @@ h1 {}
     align-items: center;
     opacity: 0;
     transition: opacity 1s;
+    z-index: -1;
 }
 .deleted .alert {
     z-index: 5;
@@ -230,6 +231,15 @@ h1 {}
 }
 .edit-screen select, .edit-screen button {
     text-align: center;
+}
+.edit-error {
+    color: #721c24;    
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    display: none;
+}
+.edit-error.visible {
+    display: block;
 }
 
 @media screen and (max-width: 1280px) {

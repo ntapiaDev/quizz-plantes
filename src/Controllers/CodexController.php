@@ -118,4 +118,55 @@ class CodexController extends Controller
             'message' => 'La soumission a bien été supprimée'
         ]);
     }
+
+    /**
+     * Modifie une card ou soumission
+     *
+     * @return void
+     */
+    public function edit()
+    {
+        if(!(isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin')) {
+            echo 'Vous n\'avez pas l\'authorisation d\'accéder à cette page.';
+            exit;
+        }
+
+        $latin = ucfirst(strtolower($_POST['nom_latin']));
+
+        $submission = new PlantesModel;
+        $alreadySubmitted = $submission->findOneByLatin($latin);
+
+        if($alreadySubmitted && $alreadySubmitted['id'] !== $_POST['id']) {
+            echo $latin . ' est déjà présent dans notre base de données.';
+        //  Si il y a une image
+        } else if(isset($_FILES['image'])) {
+            if ($_FILES['image']['size'] > 200000) {
+                echo 'Votre image est trop grosse (200ko max).';
+                exit;
+            } else if (getimagesize($_FILES['image']['tmp_name'])[0] !== 600 && getimagesize($_FILES['image']['tmp_name'])[1] !== 600) {
+                echo 'Votre image doit avoir un format de 600px * 600px.';
+                exit;
+            } else {
+            $upload_dir = ROOT . '/public/img/';
+            $ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
+            $file_name = strtolower(explode(' ', $latin)[0]) . '_' . explode(' ', $latin)[1] . '.' . $ext;
+            $upload_file = $upload_dir . $file_name;
+            move_uploaded_file($_FILES["image"]["tmp_name"], $upload_file);
+            $submission->setImage($file_name);
+            }
+        }
+
+        $submission->setId($_POST['id'])
+            ->setNom_fr(ucfirst(strtolower($_POST['nom_fr'])))
+            ->setNom_en(ucfirst(strtolower($_POST['nom_en'])))
+            ->setNom_latin($latin)
+            ->setFamille(ucfirst(strtolower($_POST['famille'])))
+            ->setCultivar(ucfirst(strtolower($_POST['cultivar'])))
+            ->setFloraison(strtolower($_POST['floraison']))
+            ->setCategorie($_POST['Categorie']);
+    
+        $submission->update();
+
+        echo 'La soumission a bien été modifiée';       
+    }
 }

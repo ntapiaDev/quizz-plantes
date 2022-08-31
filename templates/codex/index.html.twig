@@ -10,9 +10,8 @@
 	<section class="codex">
 
 		<a href="/codex"><h1>Liste des plantes {% if isAdmin %}(accès admin){% endif %}</h1></a>
-
+        
         <div class="filter">
-
             <div class="search-bar">
                 <select id="famille">
                     <option value="all">Choisir une famille</option>
@@ -107,7 +106,8 @@
                                 <option value="plante">Plante</option>
                             </select>
                             <input type="file" id="editImage" name="editImage" class="fileInput" accept="image/png, image/jpeg">
-                            <button class="addSubmit">Envoyer</button>
+                            <button class="editCard" data-id={{plante.id}}>Envoyer</button>
+                            <p class="edit-error">Echec de la modification</p>
                         </form>
                     </div>
                     <!-- EDIT SCREEN -->
@@ -160,9 +160,8 @@
                         <form name="edit" enctype="multipart/form-data">
                             <input type="text" id="editNameFr" placeholder="Nom commun (fr)">
                             <input type="text" id="editNameEn" placeholder="Nom commun (en)">
+                            <input type="text" id="editNameLatin" placeholder="Nom latin">
                             <input type="text" id="editFamily" placeholder="Famille">
-                            <input type="text" id="editGender" placeholder="Genre">
-                            <input type="text" id="editSpecies" placeholder="Espèce">
                             <input type="text" id="editCultivar" placeholder="Cultivar">
                             <input type="text" id="editBlossom" placeholder="Dates de floraison">
                             <select id="editCategory">
@@ -175,7 +174,8 @@
                                 <option value="plante">Plante</option>
                             </select>
                             <input type="file" id="editImage" name="editImage" class="fileInput" accept="image/png, image/jpeg">
-                            <button class="addSubmit">Envoyer</button>
+                            <button class="editCard" data-id={{plante.id}}>Envoyer</button>
+                            <p class="edit-error">Echec de la modification</p>
                         </form>
                     </div>
                     <!-- EDIT SCREEN -->

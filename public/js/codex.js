@@ -57,9 +57,11 @@ const form = document.querySelector('.addForm form');
 const message = document.querySelector('.message');
 
 const addSubmit = document.querySelector('.addSubmit');
-const formVerify = (form) => {
+const formVerify = (form, pop) => {
     let children = Array.from(form.children);
-    children.pop();
+    for(let i = 0; i < pop; i++) {
+        children.pop();
+    }
     let verified = true;
     children.forEach(child => !child.value ? verified = false : '');
     return verified;
@@ -71,7 +73,7 @@ const resetForm = (form) => {
 }
 const submitPlant = (e) => {
     e.preventDefault();
-    if (formVerify(form)) {
+    if (formVerify(form, 1)) {
 
         let formData = new FormData();
         formData.append('nameFr', document.querySelector('#nameFr').value);
@@ -179,25 +181,105 @@ const deleteSubmission = async (e) => {
         e.target.parentNode.parentNode.classList.contains('card-container-active') ? pendingCountUpdate('list') : pendingCountUpdate('submit');         
     }
 }
+
+// let editBtnReady = true;
 const openEdit = async (e) => {
     let editScreen = e.target.parentNode.parentNode.children[0].children[1]
     let editForm = editScreen.children[1];
     editScreen.classList.toggle('edit-visible');
 
+    //Reset des erreurs
+    const editError = e.target.parentNode.parentNode.children[0].children[1].children[1].children[9];
+    editError.textContent = ''                     
+    editError.classList.remove('visible');
+
     //Récupération des données
     if(editScreen.classList.contains('edit-visible')) {
         const response = await fetch(`/quizz/getPlantById/${e.target.parentNode.dataset.id}`);
         const plant = await response.json();
-        console.log(plant);
 
         editForm.children[0].value = plant.nom_fr;
         editForm.children[1].value = plant.nom_en;
         editForm.children[2].value = plant.nom_latin;
+        editScreen.children[0].style.backgroundColor = plant.Categorie == 'fougère' ?
+        '#FFE588' : plant.Categorie == 'arbrisseau' ?
+        '#FFB169' : plant.Categorie == 'arbuste' ?
+        '#FF9FC2' : plant.Categorie == 'arbre' ?
+        '#F15050' : plant.Categorie == 'palmier' ?
+        '#9ACCA5' : plant.Categorie == 'liane' ?
+        '#A1CED6' : '#6FC15A';
         editForm.children[3].value = plant.famille;
         editForm.children[4].value = plant.cultivar;
         editForm.children[5].value = plant.floraison;
         editForm.children[6].value = plant.Categorie;
         // editForm.children[7].value = plant.image;
+
+        //Gestion de l'envoi
+        const submitEdit = async (e, id) => {
+            e.preventDefault();
+
+            if(formVerify(e.target.parentNode, 3) && editForm.children[2].value.split(' ').length === 2) {
+                let formData = new FormData();
+                formData.append('id', id);
+                formData.append('nom_fr', editForm.children[0].value);
+                formData.append('nom_en', editForm.children[1].value);
+                formData.append('nom_latin', editForm.children[2].value);
+                formData.append('famille', editForm.children[3].value);
+                formData.append('cultivar', editForm.children[4].value);
+                formData.append('floraison', editForm.children[5].value);
+                formData.append('Categorie', editForm.children[6].value);
+                formData.append('image', editForm.children[7].files[0]);
+
+                let request = new XMLHttpRequest();
+                request.open("POST", "codex/edit");
+                request.send(formData);
+                const editedCard = e.target.parentNode;
+                request.onreadystatechange = function () {
+                    if (request.readyState === 4 && request.status === 200) {
+                        console.log(request.response);
+                        if (request.response === 'La soumission a bien été modifiée') {
+                            //Actualisation des données
+                            function capitalize(string) {
+                                return string.charAt(0).toUpperCase() + string.slice(1);
+                            }
+                            function capitalizeAndLower(string) {
+                                return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+                            }
+                            const editedCard = e.target.parentNode.parentNode.parentNode;
+                            editedCard.children[2].textContent = editForm.children[2].value;
+                            editedCard.children[2].style.backgroundColor = editForm.children[6].value == 'fougère' ?
+                            '#FFE588' : editForm.children[6].value == 'arbrisseau' ?
+                            '#FFB169' : editForm.children[6].value == 'arbuste' ?
+                            '#FF9FC2' : editForm.children[6].value == 'arbre' ?
+                            '#F15050' : editForm.children[6].value == 'palmier' ?
+                            '#9ACCA5' : editForm.children[6].value == 'liane' ?
+                            '#A1CED6' : '#6FC15A';
+                            editedCard.children[4].textContent = capitalize(editForm.children[0].value);
+                            editedCard.children[6].textContent = capitalizeAndLower(editForm.children[3].value);
+                            editedCard.children[8].textContent = capitalizeAndLower(editForm.children[2].value.split(' ')[0]);
+                            editedCard.children[10].textContent = editForm.children[2].value.split(' ')[1].toLowerCase();
+                            editedCard.children[12].textContent = capitalize(editForm.children[4].value);
+                            //Update de l'image
+                            editForm.children[7].files[0] ? editedCard.children[13].src = '/img/' + (editForm.children[2].value.split(' ')[0] + '_' +  editForm.children[2].value.split(' ')[1] + '.' + editForm.children[7].files[0]['name'].split('.')[1] ).toLowerCase() : '';
+                            //Fermeture de la modale
+                            editScreen.classList.remove('edit-visible');
+                        } else {
+                            editError.textContent = request.response;
+                            editError.classList.add('visible');
+                        }
+                    }
+                }
+            } else {
+                editError.textContent = 'Merci de remplir tous les champs.'
+                editError.classList.add('visible');
+            }
+        }
+        //Mise en place du listener de submit
+        // if(editBtnReady) {
+            const editBtn = editForm.children[8];
+            editBtn.addEventListener('click', (e) => submitEdit(e, editBtn.dataset.id));
+            // editBtnReady = false;
+        // }
     }
 }
 
