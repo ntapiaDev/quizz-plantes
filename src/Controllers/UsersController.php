@@ -36,14 +36,15 @@ class UsersController extends Controller
     public function login()
     {
         if(isset($_SESSION['user'])) {
-            header('Location: /');
+            header('Location: /quizz');
             exit;
         }
     
         if(!empty($_POST)) {
 
             //Connexion en invité
-            if($_POST['username'] == 'invite' && $_POST['password'] == 'invite') {
+            if(isset($_POST['autolog']) && $_POST['autolog']) {
+                $_SESSION['erreur'] = '';
                 $_SESSION['user'] = [
                     'id' => '2',
                     'username' => 'Invité',
@@ -65,6 +66,7 @@ class UsersController extends Controller
                 
                 $user = $userModel->hydrate($userArray);
                 if(password_verify($_POST['password'], $user->getPassword())) {
+                    $_SESSION['erreur'] = '';
                     $user->setSession();
                     header('Location: /quizz');
                     exit;
@@ -95,7 +97,7 @@ class UsersController extends Controller
     public function register()
     {
         if(isset($_SESSION['user'])) {
-            header('Location: /');
+            header('Location: /quizz');
             exit;
         }
 

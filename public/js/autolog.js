@@ -6,6 +6,7 @@ submit.addEventListener('click', (e) => {
     let formData = new FormData;
     formData.append('username', 'invite');
     formData.append('password', 'invite');
+    formData.append('autolog', true);
 
     let request = new XMLHttpRequest();
     request.open("POST", "users/login");

@@ -116,7 +116,7 @@ addSubmit.addEventListener('click', submitPlant);
 
 // Soumissions en attente :
 const pending = document.querySelector('.pending-grid');
-const pendingCards = Array.from(pending.children);
+const pendingCards = pending ? Array.from(pending.children) : [];
 
 const accepts = document.querySelectorAll('.accept');
 const rejects = document.querySelectorAll('.reject');
